@@ -1,0 +1,11 @@
+# Package managers.
+node_modules/
+vendor/
+
+# Misc.
+*.log
+.DS_Store
+
+# Release distribution directory.
+/dist/
+/tmp/
