@@ -1,2 +1,16 @@
 import:
- - gocodebox/lifterlms:.config/travis/add-on.yml
+ - gocodebox/lifterlms:.config/travis/main.yml
+
+before_install:
+  # Disable xDebug for faster builds
+  - |
+    if [ "1" != $RUN_CODE_COVERAGE ] && [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
+      phpenv config-rm xdebug.ini
+    fi
+  # Raise PHP memory limit to 2048MB
+  - echo 'memory_limit = 2048M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  # Install composer deps.
+  - composer install
+
+install:
+  - composer run tests-install
