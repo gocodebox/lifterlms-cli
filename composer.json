@@ -1,0 +1,32 @@
+{
+  "name": "lifterlms/lifterlms-cli",
+  "description": "WP CLI commands for LifterLMS",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Team LifterLMS",
+      "email": "team@lifterlms.com"
+    }
+  ],
+  "config": {
+    "process-timeout": 1800
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.3"
+  },
+  "require-dev": {
+    "lifterlms/lifterlms-tests": "dev-trunk"
+  },
+  "scripts": {
+
+    "check-cs": "run-phpcs-tests",
+    "tests-install": "\"vendor/bin/llms-tests\" install-cli ${TESTS_DB_NAME:-llms_cli_tests} ${TESTS_DB_USER:-root} \"${TESTS_DB_PASS-password}\" ${TESTS_DB_HOST:-127.0.0.1}",
+
+    "tests-behat": "vendor/bin/behat",
+    "tests": [
+      "@tests-behat"
+    ]
+  }
+}

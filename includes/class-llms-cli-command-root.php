@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * LLMS_CLI_Command_Root file.
+ *
+ * @package LifterLMS/CLI
+ *
+ * @since [version]
+ * @version [version]
+ */
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -31,16 +38,9 @@ class LLMS_CLI_Command_Root extends WP_CLI_Command {
 	 */
 	public function version( $args, $assoc_args ) {
 
-		if ( ! function_exists( 'llms' ) ) {
-			WP_CLI::error( 'Gravity Forms is not installed. Use the wp gf install command.' );
-		}
-
 		$slug = empty( $args[0] ) ? 'core' : $args[0];
 		if ( in_array( $slug, array( 'core', 'lifterlms' ), true ) ) {
 			WP_CLI::log( llms()->version );
-		// } else {
-		// 	$addon = $this->get_addon( $slug );
-		// 	WP_CLI::log( $addon->get_version() );
 		}
 	}
 
