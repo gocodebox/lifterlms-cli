@@ -3,16 +3,15 @@ Feature: Run help commands
 	Background:
 		Given a WP install with the LifterLMS plugin
 
-	Scenario: Run the WP core help command
-		When I run the WP-CLI command `wp help`
+	Scenario: Run help commands
+		When I run the command `wp help`
 		Then STDERR should be empty
 		And STDOUT should contain:
 			"""
 			llms                  Manage LifterLMS.
 			"""
 
-	Scenario: Run the llms help command
-		When I run the WP-CLI command `wp llms --help`
+		When I run the command `wp llms --help`
 		Then STDERR should be empty
 		And STDOUT should contain:
 			"""
@@ -31,6 +30,7 @@ Feature: Run help commands
 			SUBCOMMANDS
 
 			  access-plan               Manage access plans.
+			  addon                     Manage LifterLMS add-on plugins and themes.
 			  api-key                   Manage api keys.
 			  course                    Manage courses.
 			  instructor                Manage instructors.
