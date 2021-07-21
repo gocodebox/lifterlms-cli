@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since [version]
  */
-class LLMS_CLI_Command_Root extends WP_CLI_Command {
+class LLMS_CLI_Command_Root extends LLMS_CLI_Abstract_Command {
 
 	/**
 	 * Display the version of LifterLMS or the specified LifterLMS add-on.
@@ -29,19 +29,53 @@ class LLMS_CLI_Command_Root extends WP_CLI_Command {
 	 *
 	 * ## EXAMPLES
 	 *
+	 *     # Show the LifterLMS core plugin version
 	 *     wp llms version
+	 *
+	 *     # Show the LifterLMS core plugin version
 	 *     wp llms version core
+	 *
+	 *     # Show an add-on version without the "lifterlms-" prefix.
 	 *     wp llms version groups
+	 *
+	 *     # Show an add-on version with the "lifterlms-" prefix.
 	 *     wp llms version lifterlms-assignments
 	 *
  	 * @since [version]
+ 	 *
+ 	 * @param array $args       Indexed array of positional command arguments.
+ 	 * @param array $assoc_args Associative array of command options.
+ 	 * @return null
 	 */
 	public function version( $args, $assoc_args ) {
 
+		// @todo Implement --db option.
+		if ( ! empty( $assoc_args['db'] ) ) {
+			return WP_CLI::error( 'Not implemented.' );
+		}
+
 		$slug = empty( $args[0] ) ? 'core' : $args[0];
 		if ( in_array( $slug, array( 'core', 'lifterlms' ), true ) ) {
-			WP_CLI::log( llms()->version );
+			return WP_CLI::log( llms()->version );
 		}
+
+		$slug  = $this->prefix_slug( $slug );
+		$addon = $this->get_addon( $slug );
+		if ( empty( $addon ) ) {
+			return WP_CLI::error( 'Invalid slug.' );
+		}
+
+		if ( $addon->is_installed() ) {
+			return WP_CLI::log( $addon->get_installed_version() );
+		}
+
+		return WP_CLI::error(
+			sprintf(
+				"The requested add-on is not installed. Run 'wp llms addon install %s.' to install it.",
+				$args[0],
+			)
+		);
+
 	}
 
 }
