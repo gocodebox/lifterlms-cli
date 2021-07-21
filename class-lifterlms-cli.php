@@ -71,6 +71,7 @@ final class LifterLMS_CLI {
 	public function commands() {
 
 		WP_CLI::add_command( 'llms', 'LLMS_CLI_Command_Root' );
+		WP_CLI::add_command( 'llms addon', 'LLMS_CLI_Command_Add_On' );
 
 	}
 
@@ -90,7 +91,11 @@ final class LifterLMS_CLI {
 	 */
 	private function includes() {
 
+		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-abstract-command.php';
+
+		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-command-add-on.php';
 		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-command-root.php';
+
 		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-restful-command.php';
 		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-restful-runner.php';
 
