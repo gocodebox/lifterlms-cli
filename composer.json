@@ -19,6 +19,11 @@
   "require-dev": {
     "lifterlms/lifterlms-tests": "dev-trunk"
   },
+  "autoload": {
+    "psr-4": {
+      "LifterLMS\\CLI\\": "src/"
+    }
+  },
   "scripts": {
 
     "check-cs": "run-phpcs-tests",

@@ -2,7 +2,7 @@
 /**
  * LifterLMS CLI Plugin
  *
- * @package LifterLMS_CLI/Main
+ * @package LifterLMS/CLI/Main
  *
  * @since [version]
  * @version [version]
@@ -19,6 +19,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Requires LifterLMS: 5.0
  */
+
+use LifterLMS\CLI\Main;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -41,22 +43,18 @@ if ( ! defined( 'LLMS_CLI_PLUGIN_DIR' ) ) {
 	define( 'LLMS_CLI_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 }
 
-// Load Plugin.
-if ( ! class_exists( 'LifterLMS_CLI' ) ) {
+// Autoload.
+require_once LLMS_CLI_PLUGIN_DIR . 'vendor/autoload.php';
 
-	require_once LLMS_CLI_PLUGIN_DIR . 'class-lifterlms-cli.php';
-
-	/**
-	 * Main Plugin Instance
-	 *
-	 * @since [version]
-	 *
-	 * @return LLMS_CLI
-	 */
-	function llms_cli() {
-		return LifterLMS_CLI::instance();
-	}
-
+/**
+ * Main Plugin Instance
+ *
+ * @since [version]
+ *
+ * @return LLMS_CLI
+ */
+function llms_cli() {
+	return Main::instance();
 }
 
 return llms_cli();

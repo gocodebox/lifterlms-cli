@@ -8,6 +8,8 @@
  * @version [version]
  */
 
+namespace LifterLMS\CLI;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -15,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since [version]
  */
-final class LifterLMS_CLI {
+final class Main {
 
 	/**
 	 * Current version of the plugin
@@ -70,34 +72,15 @@ final class LifterLMS_CLI {
 
 	public function commands() {
 
-		WP_CLI::add_command( 'llms', 'LLMS_CLI_Command_Root' );
-		WP_CLI::add_command( 'llms addon', 'LLMS_CLI_Command_Add_On' );
+		\WP_CLI::add_command( 'llms', 'LifterLMS\CLI\Commands\Root' );
+		\WP_CLI::add_command( 'llms addon', 'LifterLMS\CLI\Commands\AddOn' );
 
 	}
 
 	private function hooks() {
 
-		WP_CLI::add_hook( 'after_wp_load', array( $this, 'commands' ) );
-		WP_CLI::add_hook( 'after_wp_load', 'LLMS_CLI_Restful_Runner::after_wp_load' );
-
-	}
-
-	/**
-	 * Include files and instantiate classes
-	 *
-	 * @since [version]
-	 *
-	 * @return  void
-	 */
-	private function includes() {
-
-		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-abstract-command.php';
-
-		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-command-add-on.php';
-		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-command-root.php';
-
-		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-restful-command.php';
-		require_once LLMS_CLI_PLUGIN_DIR . 'includes/class-llms-cli-restful-runner.php';
+		\WP_CLI::add_hook( 'after_wp_load', array( $this, 'commands' ) );
+		\WP_CLI::add_hook( 'after_wp_load', 'LifterLMS\CLI\Commands\Restful\Runner::after_wp_load' );
 
 	}
 
@@ -113,7 +96,6 @@ final class LifterLMS_CLI {
 		// Only load if we have the minimum LifterLMS version installed & activated.
 		if ( function_exists( 'llms' ) && version_compare( '5.0.0', llms()->version, '<=' ) ) {
 
-			$this->includes();
 			$this->hooks();
 
 		}

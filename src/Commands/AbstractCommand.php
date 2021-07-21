@@ -7,14 +7,17 @@
  * @since [version]
  * @version [version]
  */
-defined( 'ABSPATH' ) || die();
+
+namespace LifterLMS\CLI\Commands;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Base CLI command for use by LifterLMS CLI commands
  *
  * @since [version]
  */
-abstract class LLMS_CLI_Abstract_Command extends WP_CLI_Command {
+abstract class AbstractCommand extends \WP_CLI_Command {
 
 	/**
 	 * Retrieve an LLMS_Add_On object for a given add-on by it's slug.

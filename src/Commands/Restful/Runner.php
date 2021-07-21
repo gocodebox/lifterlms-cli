@@ -14,6 +14,8 @@
  * @link https://github.com/wp-cli/restful/commit/6ea62c149944d8fcb31a7ade7b4f65fb72c8a5a3
  */
 
+namespace LifterLMS\CLI\Commands\Restful;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -24,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since [version]
  */
-class LLMS_CLI_Restful_Runner {
+class Runner {
 
 	public static function after_wp_load() {
 
@@ -37,11 +39,11 @@ class LLMS_CLI_Restful_Runner {
 		}
 
 		global $wp_rest_server;
-		$wp_rest_server = new WP_REST_Server();
+		$wp_rest_server = new \WP_REST_Server();
 
 		do_action( 'rest_api_init', $wp_rest_server );
 
-		$request = new WP_REST_Request( 'GET', '/' );
+		$request = new \WP_REST_Request( 'GET', '/' );
 		$request->set_param( 'context', 'help' );
 		
 		$response      = $wp_rest_server->dispatch( $request );
@@ -58,12 +60,12 @@ class LLMS_CLI_Restful_Runner {
 			}
 
 			if ( empty( $route_data['schema']['title'] ) ) {
-				WP_CLI::debug( "No schema title found for {$route}, skipping LifterLMS CLI REST command registration.", 'lifterlms' );
+				\WP_CLI::debug( "No schema title found for {$route}, skipping LifterLMS CLI REST command registration.", 'lifterlms' );
 				continue;
 			}
 
 			$name = $route_data['schema']['title'];
-			$rest_command = new LLMS_CLI_Restful_Command( $name, $route, $route_data['schema'] );
+			$rest_command = new Command( $name, $route, $route_data['schema'] );
 			self::register_route_commands( $rest_command, $route, $route_data );
 
 		}
@@ -211,7 +213,7 @@ class LLMS_CLI_Restful_Runner {
 			);
 
 			$before_invoke = null;
-			if ( empty( $command_args['when'] ) && WP_CLI::get_config( 'debug' ) ) {
+			if ( empty( $command_args['when'] ) && \WP_CLI::get_config( 'debug' ) ) {
 				$before_invoke = function() {
 					if ( ! defined( 'SAVEQUERIES' ) ) {
 						define( 'SAVEQUERIES', true );
@@ -219,18 +221,18 @@ class LLMS_CLI_Restful_Runner {
 				};
 			}
 
-			WP_CLI::add_command( "{$parent}", $rest_command, array(
+			\WP_CLI::add_command( "{$parent}", $rest_command, array(
 				'shortdesc' => self::get_command_root_desc( $route_data['schema']['title'] ),
 			) );
 
-			WP_CLI::add_command( "{$parent} {$command}", array( $rest_command, $methods[ $command ] ), array(
+			\WP_CLI::add_command( "{$parent} {$command}", array( $rest_command, $methods[ $command ] ), array(
 				'synopsis'      => $synopsis,
 				'when'          => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
 				'before_invoke' => $before_invoke,
 			) );
 
 			if ( 'list' === $command ) {
-				WP_CLI::add_command( "{$parent} diff", array( $rest_command, 'diff_items' ), array(
+				\WP_CLI::add_command( "{$parent} diff", array( $rest_command, 'diff_items' ), array(
 					'when' => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
 				) );
 			}
@@ -258,7 +260,7 @@ class LLMS_CLI_Restful_Runner {
 				);
 				// Reuse synopsis from 'create' command
 				$generate_synopsis = array_merge( $generate_synopsis, $synopsis );
-				WP_CLI::add_command( "{$parent} generate", array( $rest_command, 'generate_items' ), array(
+				\WP_CLI::add_command( "{$parent} generate", array( $rest_command, 'generate_items' ), array(
 					'synopsis'    => $generate_synopsis,
 					'when'        => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
 				) );
@@ -272,7 +274,7 @@ class LLMS_CLI_Restful_Runner {
 					'description' => 'The id for the resource.',
 					'optional'    => false,
 				);
-				WP_CLI::add_command( "{$parent} edit", array( $rest_command, 'edit_item' ), array(
+				\WP_CLI::add_command( "{$parent} edit", array( $rest_command, 'edit_item' ), array(
 					'synopsis'      => $synopsis,
 					'when'          => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
 				) );

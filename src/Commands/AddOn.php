@@ -7,14 +7,19 @@
  * @since [version]
  * @version [version]
  */
-defined( 'ABSPATH' ) || die();
+
+namespace LifterLMS\CLI\Commands;
+
+use WP_CLI\Formatter;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Manage LifterLMS add-on plugins and themes.
  *
  * @since [version]
  */
-class LLMS_CLI_Command_Add_On extends LLMS_CLI_Abstract_Command {
+class AddOn extends AbstractCommand {
 
 	/**
 	 * Accepts an add-on array and converts it to the format used by the output method
@@ -181,7 +186,7 @@ class LLMS_CLI_Command_Add_On extends LLMS_CLI_Abstract_Command {
 			$assoc_args['fields'] = $all_fields;
 		}
 
-		$formatter = new WP_CLI\Formatter( $assoc_args, $fields );
+		$formatter = new Formatter( $assoc_args, $fields );
 		return $formatter->display_items( $list );
 
 	}

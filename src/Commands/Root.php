@@ -7,14 +7,17 @@
  * @since [version]
  * @version [version]
  */
-defined( 'ABSPATH' ) || die();
+
+namespace LifterLMS\CLI\Commands;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Manage LifterLMS.
  *
  * @since [version]
  */
-class LLMS_CLI_Command_Root extends LLMS_CLI_Abstract_Command {
+class Root extends AbstractCommand {
 
 	/**
 	 * Display the version of LifterLMS or the specified LifterLMS add-on.
@@ -51,25 +54,25 @@ class LLMS_CLI_Command_Root extends LLMS_CLI_Abstract_Command {
 
 		// @todo Implement --db option.
 		if ( ! empty( $assoc_args['db'] ) ) {
-			return WP_CLI::error( 'Not implemented.' );
+			return \WP_CLI::error( 'Not implemented.' );
 		}
 
 		$slug = empty( $args[0] ) ? 'core' : $args[0];
 		if ( in_array( $slug, array( 'core', 'lifterlms' ), true ) ) {
-			return WP_CLI::log( llms()->version );
+			return \WP_CLI::log( llms()->version );
 		}
 
 		$slug  = $this->prefix_slug( $slug );
 		$addon = $this->get_addon( $slug );
 		if ( empty( $addon ) ) {
-			return WP_CLI::error( 'Invalid slug.' );
+			return \WP_CLI::error( 'Invalid slug.' );
 		}
 
 		if ( $addon->is_installed() ) {
-			return WP_CLI::log( $addon->get_installed_version() );
+			return \WP_CLI::log( $addon->get_installed_version() );
 		}
 
-		return WP_CLI::error(
+		return \WP_CLI::error(
 			sprintf(
 				"The requested add-on is not installed. Run 'wp llms addon install %s.' to install it.",
 				$args[0],

@@ -14,6 +14,8 @@
  * @link https://github.com/wp-cli/restful/commit/021f1731c737fc1cb36ee06f0c34b73eb0d6aabb
  */
 
+namespace LifterLMS\CLI\Commands\Restful;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -21,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since [version]
  */
-class LLMS_CLI_Restful_Command {
+class Command {
 
 	private $scope = 'internal';
 	private $api_url = '';
@@ -49,9 +51,9 @@ class LLMS_CLI_Restful_Command {
 	public function create_item( $args, $assoc_args ) {
 		list( $status, $body ) = $this->do_request( 'POST', $this->get_base_route(), $assoc_args );
 		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'porcelain' ) ) {
-			WP_CLI::line( $body['id'] );
+			\WP_CLI::line( $body['id'] );
 		} else {
-			WP_CLI::success( "Created {$this->name} {$body['id']}." );
+			\WP_CLI::success( "Created {$this->name} {$body['id']}." );
 		}
 	}
 
@@ -100,12 +102,12 @@ class LLMS_CLI_Restful_Command {
 		list( $status, $body ) = $this->do_request( 'DELETE', $this->get_filled_route( $args ), $assoc_args );
 		$id = isset( $body['previous'] ) ? $body['previous']['id'] : $body['id'];
 		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'porcelain' ) ) {
-			WP_CLI::line( $id );
+			\WP_CLI::line( $id );
 		} else {
 			if ( empty( $assoc_args['force'] ) ) {
-				WP_CLI::success( "Trashed {$this->name} {$id}." );
+				\WP_CLI::success( "Trashed {$this->name} {$id}." );
 			} else {
-				WP_CLI::success( "Deleted {$this->name} {$id}." );
+				\WP_CLI::success( "Deleted {$this->name} {$id}." );
 			}
 		}
 	}
@@ -199,15 +201,15 @@ class LLMS_CLI_Restful_Command {
 	public function diff_items( $args, $assoc_args ) {
 
 		list( $alias ) = $args;
-		if ( ! array_key_exists( $alias, WP_CLI::get_runner()->aliases ) ) {
-			WP_CLI::error( "Alias '{$alias}' not found." );
+		if ( ! array_key_exists( $alias, \WP_CLI::get_runner()->aliases ) ) {
+			\WP_CLI::error( "Alias '{$alias}' not found." );
 		}
 		$resource = isset( $args[1] ) ? $args[1] : null;
 		$fields = \WP_CLI\Utils\get_flag_value( $assoc_args, 'fields', null );
 
 		list( $from_status, $from_body, $from_headers ) = $this->do_request( 'GET', $this->get_base_route(), array() );
 
-		$php_bin = WP_CLI::get_php_binary();
+		$php_bin = \WP_CLI::get_php_binary();
 		$script_path = $GLOBALS['argv'][0];
 		$other_args = implode( ' ', array_map( 'escapeshellarg', array( $alias, 'rest', $this->name, 'list' ) ) );
 		$other_assoc_args = \WP_CLI\Utils\assoc_args_to_str( array( 'format' => 'envelope' ) );
@@ -267,7 +269,7 @@ class LLMS_CLI_Restful_Command {
 			}
 		} while( count( $from_body ) || count( $to_body ) );
 
-		WP_CLI::line( \cli\Colors::colorize( "%R(-) {$this->api_url} %G(+) {$to_api_url}%n" ) );
+		\WP_CLI::line( \cli\Colors::colorize( "%R(-) {$this->api_url} %G(+) {$to_api_url}%n" ) );
 		foreach( $display_items as $display_item ) {
 			$this->show_difference( $this->name, array( 'from' => $display_item['from'], 'to' => $display_item['to'] ) );
 		}
@@ -281,9 +283,9 @@ class LLMS_CLI_Restful_Command {
 	public function update_item( $args, $assoc_args ) {
 		list( $status, $body ) = $this->do_request( 'POST', $this->get_filled_route( $args ), $assoc_args );
 		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'porcelain' ) ) {
-			WP_CLI::line( $body['id'] );
+			\WP_CLI::line( $body['id'] );
 		} else {
-			WP_CLI::success( "Updated {$this->name} {$body['id']}." );
+			\WP_CLI::success( "Updated {$this->name} {$body['id']}." );
 		}
 	}
 
@@ -296,7 +298,7 @@ class LLMS_CLI_Restful_Command {
 		$assoc_args['context'] = 'edit';
 		list( $status, $options_body ) = $this->do_request( 'OPTIONS', $this->get_filled_route( $args ), $assoc_args );
 		if ( empty( $options_body['schema'] ) ) {
-			WP_CLI::error( "Cannot edit - no schema found for resource." );
+			\WP_CLI::error( "Cannot edit - no schema found for resource." );
 		}
 		$schema = $options_body['schema'];
 		list( $status, $resource_fields ) = $this->do_request( 'GET', $this->get_filled_route( $args ), $assoc_args );
@@ -324,14 +326,14 @@ class LLMS_CLI_Restful_Command {
 			}
 		}
 		if ( empty( $editable_fields ) ) {
-			WP_CLI::error( "Cannot edit - no editable fields found on schema." );
+			\WP_CLI::error( "Cannot edit - no editable fields found on schema." );
 		}
-		$ret = \WP_CLI\Utils\launch_editor_for_input( Spyc::YAMLDump( $editable_fields ), sprintf( 'Editing %s %s', $schema['title'], $args[0] ) );
+		$ret = \WP_CLI\Utils\launch_editor_for_input( \Spyc::YAMLDump( $editable_fields ), sprintf( 'Editing %s %s', $schema['title'], $args[0] ) );
 		if ( false === $ret ) {
-			WP_CLI::warning( "No edits made." );
+			\WP_CLI::warning( "No edits made." );
 		} else {
-			list( $status, $body ) = $this->do_request( 'POST', $this->get_filled_route( $args ),Spyc::YAMLLoadString( $ret ) );
-			WP_CLI::success( "Updated {$schema['title']} {$args[0]}." );
+			list( $status, $body ) = $this->do_request( 'POST', $this->get_filled_route( $args ), \Spyc::YAMLLoadString( $ret ) );
+			\WP_CLI::success( "Updated {$schema['title']} {$args[0]}." );
 		}
 	}
 
@@ -379,7 +381,7 @@ class LLMS_CLI_Restful_Command {
 					$query_total_time += $query[1];
 				}
 				$slow_query_message = '';
-				if ( $performed_queries && 'rest' === WP_CLI::get_config( 'debug' ) ) {
+				if ( $performed_queries && 'rest' === \WP_CLI::get_config( 'debug' ) ) {
 					$slow_query_message .= '. Ordered by slowness, the queries are:' . PHP_EOL;
 					foreach( $performed_queries as $i => $query ) {
 						$i++;
@@ -394,14 +396,14 @@ class LLMS_CLI_Restful_Command {
 EOT;
 						$slow_query_message .= PHP_EOL;
 					}
-				} else if ( 'rest' !== WP_CLI::get_config( 'debug' ) ) {
+				} else if ( 'rest' !== \WP_CLI::get_config( 'debug' ) ) {
 					$slow_query_message = '. Use --debug=rest to see all queries.';
 				}
 				$query_total_time = round( $query_total_time, 6 );
-				WP_CLI::debug( "REST command executed {$query_count} queries in {$query_total_time} seconds{$slow_query_message}", 'rest' );
+				\WP_CLI::debug( "REST command executed {$query_count} queries in {$query_total_time} seconds{$slow_query_message}", 'rest' );
 			}
 			if ( $error = $response->as_error() ) {
-				WP_CLI::error( $error );
+				\WP_CLI::error( $error );
 			}
 			return array( $response->get_status(), $response->get_data(), $response->get_headers() );
 		} else if ( 'http' === $this->scope ) {
@@ -417,21 +419,21 @@ EOT;
 			$body = json_decode( $response->body, true );
 			if ( $response->status_code >= 400 ) {
 				if ( ! empty( $body['message'] ) ) {
-					WP_CLI::error( $body['message'] . ' ' . json_encode( array( 'status' => $response->status_code ) ) );
+					\WP_CLI::error( $body['message'] . ' ' . json_encode( array( 'status' => $response->status_code ) ) );
 				} else {
 					switch( $response->status_code ) {
 						case 404:
-							WP_CLI::error( "No {$this->name} found." );
+							\WP_CLI::error( "No {$this->name} found." );
 							break;
 						default:
-							WP_CLI::error( 'Could not complete request.' );
+							\WP_CLI::error( 'Could not complete request.' );
 							break;
 					}
 				}
 			}
 			return array( $response->status_code, json_decode( $response->body, true ), $response->headers->getAll() );
 		}
-		WP_CLI::error( 'Invalid scope for REST command.' );
+		\WP_CLI::error( 'Invalid scope for REST command.' );
 	}
 
 	/**
@@ -617,7 +619,7 @@ EOT;
 			$line = \cli\Colors::colorize( "{$color}{$label}" ) . $line . \cli\Colors::colorize( "%n" );
 			$spaces = $spaces - 2;
 		}
-		WP_CLI::line( str_pad( ' ', $spaces ) . $line );
+		\WP_CLI::line( str_pad( ' ', $spaces ) . $line );
 	}
 
 	/**
