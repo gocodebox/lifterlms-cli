@@ -20,6 +20,32 @@ defined( 'ABSPATH' ) || exit;
 abstract class AbstractCommand extends \WP_CLI_Command {
 
 	/**
+	 * Determines whether or not a command is being chained.
+	 *
+	 * When chaining commands (like `addon uninstall --deactivate`) we skip
+	 * output of the secondary command (deactivate won't output it's success/error).
+	 *
+	 * @var boolean
+	 */
+	protected $chaining = false;
+
+	/**
+	 * Chain a command within the class
+	 *
+	 * @since [version]
+	 *
+	 * @param string $command      Method name of the command to chain.
+ 	 * @param array  assoc_args    Associative array of command options.
+ 	 * @param string $filter_field The optional name of the field to filter results by.
+	 * @return void
+	 */
+	protected function chain_command( $command, $args = array(), $assoc_args = array() ) {
+		$this->chaining = true;
+		$this->$command( $args, $assoc_args );
+		$this->chaining = false;
+	}
+
+	/**
 	 * Retrieve an LLMS_Add_On object for a given add-on by it's slug.
 	 *
 	 * @since [version]
