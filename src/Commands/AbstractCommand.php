@@ -28,7 +28,7 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	 * @return LLMS_Add_On|boolean Returns an add-on object if the add-on can be located or `false` if not found.
 	 */
 	protected function get_addon( $slug ) {
-		$addon = llms_get_add_on( $slug, 'slug' );
+		$addon = llms_get_add_on( $this->prefix_slug( $slug ), 'slug' );
 		return empty( $addon->get( 'id' ) ) ? false : $addon;
 	}
 
