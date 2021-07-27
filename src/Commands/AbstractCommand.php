@@ -10,7 +10,7 @@
 
 namespace LifterLMS\CLI\Commands;
 
-defined( 'ABSPATH' ) || exit;
+// defined( 'ABSPATH' ) || exit;
 
 /**
  * Base CLI command for use by LifterLMS CLI commands
@@ -50,12 +50,26 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	 *
 	 * @since [version]
 	 *
-	 * @param string $slug An add-on slug. Must be prefixed.
-	 * @return LLMS_Add_On|boolean Returns an add-on object if the add-on can be located or `false` if not found.
+	 * @param string               $slug     An add-on slug. Must be prefixed.
+	 * @param bool|WP_Error|string $err      If truthy, will return `null` and use log to the console using a WP_CLI method as defined by $err_type.
+	 *                                       Pass `true` to output a default error message.
+	 *                                       Pass a WP_Error object or string to use as the error.
+	 * @param string               $err_type Method to pass `$err` to when an error is encountered. Default `\WP_CLI::error()`.
+	 *                                       Use `\WP_CLI::warning()` or `\WP_CLI::log()` where appropriate.
+	 * @return LLMS_Add_On|boolean|null Returns an add-on object if the add-on can be located or `false` if not found.
+	 *                                  Returns `null` when an error is encountered and `$err` is a truthy.
 	 */
-	protected function get_addon( $slug ) {
-		$addon = llms_get_add_on( $this->prefix_slug( $slug ), 'slug' );
-		return empty( $addon->get( 'id' ) ) ? false : $addon;
+	protected function get_addon( $slug, $err = false, $err_type = 'error' ) {
+
+		$addon  = llms_get_add_on( $this->prefix_slug( $slug ), 'slug' );
+		$exists = ! empty( $addon->get( 'id' ) );
+
+		if ( ! $exists && $err ) {
+			$err = is_bool( $err ) ? sprintf( 'Invalid slug: %s.', $slug ) : $err;
+			return \WP_CLI::$err_type( $err );
+		}
+
+		return ! $exists ? false : $addon;
 	}
 
 	/**

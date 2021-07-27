@@ -10,7 +10,7 @@
 
 namespace LifterLMS\CLI\Commands;
 
-defined( 'ABSPATH' ) || exit;
+// defined( 'ABSPATH' ) || exit;
 
 /**
  * Manage LifterLMS.
@@ -23,7 +23,7 @@ class Root extends AbstractCommand {
 	 * Display the version of LifterLMS or the specified LifterLMS add-on.
 	 * 
 	 * [<slug>]
-	 * : The slug of the plugin. Default: lifterlms.
+	 * : The slug of the LifterLMS plugin or theme. Default: lifterlms.
 	 *
 	 * ## OPTIONS
 	 *
@@ -62,7 +62,6 @@ class Root extends AbstractCommand {
 			return \WP_CLI::log( llms()->version );
 		}
 
-		$slug  = $this->prefix_slug( $slug );
 		$addon = $this->get_addon( $slug );
 		if ( empty( $addon ) ) {
 			return \WP_CLI::error( 'Invalid slug.' );

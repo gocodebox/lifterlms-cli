@@ -10,6 +10,8 @@
 
 namespace LifterLMS\CLI;
 
+use WP_CLI\Dispatcher\CommandAddition;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -71,10 +73,7 @@ final class Main {
 	}
 
 	public function commands() {
-
-		\WP_CLI::add_command( 'llms', 'LifterLMS\CLI\Commands\Root' );
-		\WP_CLI::add_command( 'llms addon', 'LifterLMS\CLI\Commands\AddOn' );
-
+		require_once LLMS_CLI_PLUGIN_DIR . 'src/commands.php';
 	}
 
 	private function hooks() {
@@ -82,8 +81,25 @@ final class Main {
 		\WP_CLI::add_hook( 'after_wp_load', array( $this, 'commands' ) );
 		\WP_CLI::add_hook( 'after_wp_load', 'LifterLMS\CLI\Commands\Restful\Runner::after_wp_load' );
 
-	}
+		// If the Helper doesn't exist abort command addition.
+		if ( ! class_exists( 'LifterLMS_Helper' ) ) {
+			$helper_commands = array(
+				'license',
+				'addon install',
+				'addon uninstall',
+				'addon activate',
+				'addon deactivate',
+				'addon update',
+			);
+			foreach ( $helper_commands as $command ) {
+				\WP_CLI::add_hook( "before_add_command:llms {$command}", function( CommandAddition $command_addition ) {
+					$command_addition->abort( 'The LifterLMS Helper is required to use this command.' );
+				} );
+			}
 
+		}
+
+	}
 	/**
 	 * Include all required files and classes
 	 *
