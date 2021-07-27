@@ -9,3 +9,5 @@ vendor/
 # Release distribution directory.
 /dist/
 /tmp/
+
+.behatenv
