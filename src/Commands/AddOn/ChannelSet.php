@@ -40,8 +40,8 @@ trait ChannelSet {
 	 *
 	 * @since [version]
 	 *
- 	 * @param array $args Indexed array of positional command arguments.
- 	 * @return null
+	 * @param array $args Indexed array of positional command arguments.
+	 * @return null
 	 */
 	public function channel_set( $args ) {
 

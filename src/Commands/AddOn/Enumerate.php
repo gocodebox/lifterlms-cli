@@ -74,8 +74,8 @@ trait Enumerate {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *	   # List all add-ons.
-	 *	   wp llms addon list
+	 *     # List all add-ons.
+	 *     wp llms addon list
 	 *
 	 *     # List all add-ons in JSON format.
 	 *     wp llms addon list --format=json
@@ -89,7 +89,7 @@ trait Enumerate {
 	 *     # List all add-ons with a custom fields list.
 	 *     wp llms addon list --fields=title,status,version
 	 *
-	 * 	   # List currently activated add-ons.
+	 *     # List currently activated add-ons.
 	 *     wp llms addon list --status=active
 	 *
 	 *     # List all theme add-ons.
@@ -101,11 +101,11 @@ trait Enumerate {
 	 *     # List all add-ons licensed on the site.
 	 *     wp llms addon list --license=active
 	 *
- 	 * @since [version]
- 	 *
- 	 * @param array $args       Indexed array of positional command arguments.
- 	 * @param array $assoc_args Associative array of command options.
- 	 * @return null
+	 * @since [version]
+	 *
+	 * @param array $args       Indexed array of positional command arguments.
+	 * @param array $assoc_args Associative array of command options.
+	 * @return null
 	 */
 	public function list( $args, $assoc_args ) {
 

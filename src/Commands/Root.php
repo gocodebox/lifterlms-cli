@@ -21,7 +21,7 @@ class Root extends AbstractCommand {
 
 	/**
 	 * Display the version of LifterLMS or the specified LifterLMS add-on.
-	 * 
+	 *
 	 * [<slug>]
 	 * : The slug of the LifterLMS plugin or theme. Default: lifterlms.
 	 *
@@ -44,11 +44,11 @@ class Root extends AbstractCommand {
 	 *     # Show an add-on version with the "lifterlms-" prefix.
 	 *     wp llms version lifterlms-assignments
 	 *
- 	 * @since [version]
- 	 *
- 	 * @param array $args       Indexed array of positional command arguments.
- 	 * @param array $assoc_args Associative array of command options.
- 	 * @return null
+	 * @since [version]
+	 *
+	 * @param array $args       Indexed array of positional command arguments.
+	 * @param array $assoc_args Associative array of command options.
+	 * @return null
 	 */
 	public function version( $args, $assoc_args ) {
 

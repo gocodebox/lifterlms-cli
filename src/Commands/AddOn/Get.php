@@ -73,9 +73,9 @@ trait Get {
 	 *
 	 * @since [version]
 	 *
- 	 * @param array $args       Indexed array of positional command arguments.
- 	 * @param array $assoc_args Associative array of command options.
- 	 * @return null
+	 * @param array $args       Indexed array of positional command arguments.
+	 * @param array $assoc_args Associative array of command options.
+	 * @return null
 	 */
 	public function get( $args, $assoc_args ) {
 

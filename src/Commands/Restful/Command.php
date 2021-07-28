@@ -6,7 +6,7 @@
  * https://github.com/wp-cli/restful
  *
  * @package LifterLMS_CLI/Classes
- * 
+ *
  * @since [version]
  * @version [version]
  *
@@ -25,22 +25,22 @@ namespace LifterLMS\CLI\Commands\Restful;
  */
 class Command {
 
-	private $scope = 'internal';
+	private $scope   = 'internal';
 	private $api_url = '';
-	private $auth = array();
+	private $auth    = array();
 	private $name;
 	private $route;
 	private $resource_identifier;
 	private $schema;
-	private $default_context = '';
+	private $default_context      = '';
 	private $output_nesting_level = 0;
 
 	public function __construct( $name, $route, $schema ) {
-		$this->name = $name;
-		$parsed_args = preg_match_all( '#\([^\)]+\)#', $route, $matches );
+		$this->name                = $name;
+		$parsed_args               = preg_match_all( '#\([^\)]+\)#', $route, $matches );
 		$this->resource_identifier = ! empty( $matches[0] ) ? array_pop( $matches[0] ) : null;
-		$this->route = rtrim( $route );
-		$this->schema = $schema;
+		$this->route               = rtrim( $route );
+		$this->schema              = $schema;
 	}
 
 	/**
@@ -80,7 +80,7 @@ class Command {
 
 			if ( 'progress' === $format ) {
 				$notify->tick();
-			} else if ( 'ids' === $format ) {
+			} elseif ( 'ids' === $format ) {
 				echo $body['id'];
 				if ( $i < $count - 1 ) {
 					echo ' ';
@@ -100,7 +100,7 @@ class Command {
 	 */
 	public function delete_item( $args, $assoc_args ) {
 		list( $status, $body ) = $this->do_request( 'DELETE', $this->get_filled_route( $args ), $assoc_args );
-		$id = isset( $body['previous'] ) ? $body['previous']['id'] : $body['id'];
+		$id                    = isset( $body['previous'] ) ? $body['previous']['id'] : $body['id'];
 		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'porcelain' ) ) {
 			\WP_CLI::line( $id );
 		} else {
@@ -126,15 +126,17 @@ class Command {
 
 		if ( 'headers' === $assoc_args['format'] ) {
 			echo json_encode( $headers );
-		} else if ( 'body' === $assoc_args['format'] ) {
+		} elseif ( 'body' === $assoc_args['format'] ) {
 			echo json_encode( $body );
-		} else if ( 'envelope' === $assoc_args['format'] ) {
-			echo json_encode( array(
-				'body'        => $body,
-				'headers'     => $headers,
-				'status'      => $status,
-				'api_url'     => $this->api_url,
-			) );
+		} elseif ( 'envelope' === $assoc_args['format'] ) {
+			echo json_encode(
+				array(
+					'body'    => $body,
+					'headers' => $headers,
+					'status'  => $status,
+					'api_url' => $this->api_url,
+				)
+			);
 		} else {
 			$formatter = $this->get_formatter( $assoc_args );
 			$formatter->display_item( $body );
@@ -160,24 +162,26 @@ class Command {
 		}
 
 		if ( ! empty( $assoc_args['fields'] ) ) {
-			foreach( $items as $key => $item ) {
+			foreach ( $items as $key => $item ) {
 				$items[ $key ] = self::limit_item_to_fields( $item, $fields );
 			}
 		}
 
 		if ( ! empty( $assoc_args['format'] ) && 'count' === $assoc_args['format'] ) {
 			echo (int) $headers['X-WP-Total'];
-		} else if ( 'headers' === $assoc_args['format'] ) {
+		} elseif ( 'headers' === $assoc_args['format'] ) {
 			echo json_encode( $headers );
-		} else if ( 'body' === $assoc_args['format'] ) {
+		} elseif ( 'body' === $assoc_args['format'] ) {
 			echo json_encode( $body );
-		} else if ( 'envelope' === $assoc_args['format'] ) {
-			echo json_encode( array(
-				'body'        => $body,
-				'headers'     => $headers,
-				'status'      => $status,
-				'api_url'     => $this->api_url,
-			) );
+		} elseif ( 'envelope' === $assoc_args['format'] ) {
+			echo json_encode(
+				array(
+					'body'    => $body,
+					'headers' => $headers,
+					'status'  => $status,
+					'api_url' => $this->api_url,
+				)
+			);
 		} else {
 			$formatter = $this->get_formatter( $assoc_args );
 			$formatter->display_items( $items );
@@ -205,35 +209,39 @@ class Command {
 			\WP_CLI::error( "Alias '{$alias}' not found." );
 		}
 		$resource = isset( $args[1] ) ? $args[1] : null;
-		$fields = \WP_CLI\Utils\get_flag_value( $assoc_args, 'fields', null );
+		$fields   = \WP_CLI\Utils\get_flag_value( $assoc_args, 'fields', null );
 
 		list( $from_status, $from_body, $from_headers ) = $this->do_request( 'GET', $this->get_base_route(), array() );
 
-		$php_bin = \WP_CLI::get_php_binary();
-		$script_path = $GLOBALS['argv'][0];
-		$other_args = implode( ' ', array_map( 'escapeshellarg', array( $alias, 'rest', $this->name, 'list' ) ) );
+		$php_bin          = \WP_CLI::get_php_binary();
+		$script_path      = $GLOBALS['argv'][0];
+		$other_args       = implode( ' ', array_map( 'escapeshellarg', array( $alias, 'rest', $this->name, 'list' ) ) );
 		$other_assoc_args = \WP_CLI\Utils\assoc_args_to_str( array( 'format' => 'envelope' ) );
-		$full_command = "{$php_bin} {$script_path} {$other_args} {$other_assoc_args}";
-		$process = \WP_CLI\Process::create( $full_command, null, array(
-			'HOME'                 => getenv( 'HOME' ),
-			'WP_CLI_PACKAGES_DIR'  => getenv( 'WP_CLI_PACKAGES_DIR' ),
-			'WP_CLI_CONFIG_PATH'   => getenv( 'WP_CLI_CONFIG_PATH' ),
-		) );
-		$result = $process->run();
-		$response = json_decode( $result->stdout, true );
-		$to_headers = $response['headers'];
-		$to_body = $response['body'];
-		$to_api_url = $response['api_url'];
+		$full_command     = "{$php_bin} {$script_path} {$other_args} {$other_assoc_args}";
+		$process          = \WP_CLI\Process::create(
+			$full_command,
+			null,
+			array(
+				'HOME'                => getenv( 'HOME' ),
+				'WP_CLI_PACKAGES_DIR' => getenv( 'WP_CLI_PACKAGES_DIR' ),
+				'WP_CLI_CONFIG_PATH'  => getenv( 'WP_CLI_CONFIG_PATH' ),
+			)
+		);
+		$result           = $process->run();
+		$response         = json_decode( $result->stdout, true );
+		$to_headers       = $response['headers'];
+		$to_body          = $response['body'];
+		$to_api_url       = $response['api_url'];
 
 		if ( ! is_null( $resource ) ) {
-			$field = is_numeric( $resource ) ? 'id' : 'slug';
+			$field    = is_numeric( $resource ) ? 'id' : 'slug';
 			$callback = function( $value ) use ( $field, $resource ) {
 				if ( isset( $value[ $field ] ) && $resource == $value[ $field ] ) {
 					return true;
 				}
 				return false;
 			};
-			foreach( array( 'to_body', 'from_body' ) as $response_type ) {
+			foreach ( array( 'to_body', 'from_body' ) as $response_type ) {
 				$$response_type = array_filter( $$response_type, $callback );
 			}
 		}
@@ -244,7 +252,7 @@ class Command {
 			if ( ! empty( $from_body ) ) {
 				$from_item = array_shift( $from_body );
 				if ( ! empty( $to_body ) && ! empty( $from_item['slug'] ) ) {
-					foreach( $to_body as $i => $item ) {
+					foreach ( $to_body as $i => $item ) {
 						if ( ! empty( $item['slug'] ) && $item['slug'] === $from_item['slug'] ) {
 							$to_item = $item;
 							unset( $to_body[ $i ] );
@@ -252,26 +260,32 @@ class Command {
 						}
 					}
 				}
-			} else if ( ! empty( $to_body ) ) {
+			} elseif ( ! empty( $to_body ) ) {
 				$to_item = array_shift( $to_body );
 			}
 
 			if ( ! empty( $to_item ) ) {
-				foreach( array( 'to_item', 'from_item' ) as $item ) {
+				foreach ( array( 'to_item', 'from_item' ) as $item ) {
 					if ( isset( $$item['_links'] ) ) {
 						unset( $$item['_links'] );
 					}
 				}
 				$display_items[] = array(
-					'from'       => self::limit_item_to_fields( $from_item, $fields ),
-					'to'         => self::limit_item_to_fields( $to_item, $fields ),
+					'from' => self::limit_item_to_fields( $from_item, $fields ),
+					'to'   => self::limit_item_to_fields( $to_item, $fields ),
 				);
 			}
-		} while( count( $from_body ) || count( $to_body ) );
+		} while ( count( $from_body ) || count( $to_body ) );
 
 		\WP_CLI::line( \cli\Colors::colorize( "%R(-) {$this->api_url} %G(+) {$to_api_url}%n" ) );
-		foreach( $display_items as $display_item ) {
-			$this->show_difference( $this->name, array( 'from' => $display_item['from'], 'to' => $display_item['to'] ) );
+		foreach ( $display_items as $display_item ) {
+			$this->show_difference(
+				$this->name,
+				array(
+					'from' => $display_item['from'],
+					'to'   => $display_item['to'],
+				)
+			);
 		}
 	}
 
@@ -295,15 +309,15 @@ class Command {
 	 * @subcommand edit
 	 */
 	public function edit_item( $args, $assoc_args ) {
-		$assoc_args['context'] = 'edit';
+		$assoc_args['context']         = 'edit';
 		list( $status, $options_body ) = $this->do_request( 'OPTIONS', $this->get_filled_route( $args ), $assoc_args );
 		if ( empty( $options_body['schema'] ) ) {
-			\WP_CLI::error( "Cannot edit - no schema found for resource." );
+			\WP_CLI::error( 'Cannot edit - no schema found for resource.' );
 		}
-		$schema = $options_body['schema'];
+		$schema                           = $options_body['schema'];
 		list( $status, $resource_fields ) = $this->do_request( 'GET', $this->get_filled_route( $args ), $assoc_args );
-		$editable_fields = array();
-		foreach( $resource_fields as $key => $value ) {
+		$editable_fields                  = array();
+		foreach ( $resource_fields as $key => $value ) {
 			if ( ! isset( $schema['properties'][ $key ] ) || ! empty( $schema['properties'][ $key ]['readonly'] ) ) {
 				continue;
 			}
@@ -311,7 +325,7 @@ class Command {
 			if ( isset( $properties['properties'] ) ) {
 				$parent_key = $key;
 				$properties = $properties['properties'];
-				foreach( $value as $key => $value ) {
+				foreach ( $value as $key => $value ) {
 					if ( isset( $properties[ $key ] ) && empty( $properties[ $key ]['readonly'] ) ) {
 						if ( ! isset( $editable_fields[ $parent_key ] ) ) {
 							$editable_fields[ $parent_key ] = array();
@@ -326,11 +340,11 @@ class Command {
 			}
 		}
 		if ( empty( $editable_fields ) ) {
-			\WP_CLI::error( "Cannot edit - no editable fields found on schema." );
+			\WP_CLI::error( 'Cannot edit - no editable fields found on schema.' );
 		}
 		$ret = \WP_CLI\Utils\launch_editor_for_input( \Spyc::YAMLDump( $editable_fields ), sprintf( 'Editing %s %s', $schema['title'], $args[0] ) );
 		if ( false === $ret ) {
-			\WP_CLI::warning( "No edits made." );
+			\WP_CLI::warning( 'No edits made.' );
 		} else {
 			list( $status, $body ) = $this->do_request( 'POST', $this->get_filled_route( $args ), \Spyc::YAMLLoadString( $ret ) );
 			\WP_CLI::success( "Updated {$schema['title']} {$args[0]}." );
@@ -341,7 +355,6 @@ class Command {
 	 * Do a REST Request
 	 *
 	 * @param string $method
-	 *
 	 */
 	private function do_request( $method, $route, $assoc_args ) {
 		if ( 'internal' === $this->scope ) {
@@ -352,7 +365,7 @@ class Command {
 			if ( in_array( $method, array( 'POST', 'PUT' ) ) ) {
 				$request->set_body_params( $assoc_args );
 			} else {
-				foreach( $assoc_args as $key => $value ) {
+				foreach ( $assoc_args as $key => $value ) {
 					$request->set_param( $key, $value );
 				}
 			}
@@ -362,32 +375,35 @@ class Command {
 			$response = rest_do_request( $request );
 			if ( defined( 'SAVEQUERIES' ) && SAVEQUERIES ) {
 				$performed_queries = array();
-				foreach( (array) $GLOBALS['wpdb']->queries as $key => $query ) {
+				foreach ( (array) $GLOBALS['wpdb']->queries as $key => $query ) {
 					if ( in_array( $key, $original_queries ) ) {
 						continue;
 					}
 					$performed_queries[] = $query;
 				}
-				usort( $performed_queries, function( $a, $b ){
-					if ( $a[1] === $b[1] ) {
-						return 0;
+				usort(
+					$performed_queries,
+					function( $a, $b ) {
+						if ( $a[1] === $b[1] ) {
+							return 0;
+						}
+						return ( $a[1] > $b[1] ) ? -1 : 1;
 					}
-					return ( $a[1] > $b[1] ) ? -1 : 1;
-				});
+				);
 
-				$query_count = count( $performed_queries );
+				$query_count      = count( $performed_queries );
 				$query_total_time = 0;
-				foreach( $performed_queries as $query ) {
+				foreach ( $performed_queries as $query ) {
 					$query_total_time += $query[1];
 				}
 				$slow_query_message = '';
 				if ( $performed_queries && 'rest' === \WP_CLI::get_config( 'debug' ) ) {
 					$slow_query_message .= '. Ordered by slowness, the queries are:' . PHP_EOL;
-					foreach( $performed_queries as $i => $query ) {
+					foreach ( $performed_queries as $i => $query ) {
 						$i++;
-						$bits = explode( ', ', $query[2] );
-						$backtrace = implode( ', ', array_slice( $bits, 13 ) );
-						$seconds = round( $query[1], 6 );
+						$bits                = explode( ', ', $query[2] );
+						$backtrace           = implode( ', ', array_slice( $bits, 13 ) );
+						$seconds             = round( $query[1], 6 );
 						$slow_query_message .= <<<EOT
 {$i}:
   - {$seconds} seconds
@@ -396,7 +412,7 @@ class Command {
 EOT;
 						$slow_query_message .= PHP_EOL;
 					}
-				} else if ( 'rest' !== \WP_CLI::get_config( 'debug' ) ) {
+				} elseif ( 'rest' !== \WP_CLI::get_config( 'debug' ) ) {
 					$slow_query_message = '. Use --debug=rest to see all queries.';
 				}
 				$query_total_time = round( $query_total_time, 6 );
@@ -406,22 +422,22 @@ EOT;
 				\WP_CLI::error( $error );
 			}
 			return array( $response->get_status(), $response->get_data(), $response->get_headers() );
-		} else if ( 'http' === $this->scope ) {
+		} elseif ( 'http' === $this->scope ) {
 			$headers = array();
 			if ( ! empty( $this->auth ) && 'basic' === $this->auth['type'] ) {
 				$headers['Authorization'] = 'Basic ' . base64_encode( $this->auth['username'] . ':' . $this->auth['password'] );
 			}
 			if ( 'OPTIONS' === $method ) {
-				$method = 'GET';
+				$method                = 'GET';
 				$assoc_args['_method'] = 'OPTIONS';
 			}
 			$response = \WP_CLI\Utils\http_request( $method, rtrim( $this->api_url, '/' ) . $route, $assoc_args, $headers );
-			$body = json_decode( $response->body, true );
+			$body     = json_decode( $response->body, true );
 			if ( $response->status_code >= 400 ) {
 				if ( ! empty( $body['message'] ) ) {
 					\WP_CLI::error( $body['message'] . ' ' . json_encode( array( 'status' => $response->status_code ) ) );
 				} else {
-					switch( $response->status_code ) {
+					switch ( $response->status_code ) {
 						case 404:
 							\WP_CLI::error( "No {$this->name} found." );
 							break;
@@ -467,7 +483,7 @@ EOT;
 	 */
 	private function get_context_fields( $context ) {
 		$fields = array();
-		foreach( $this->schema['properties'] as $key => $args ) {
+		foreach ( $this->schema['properties'] as $key => $args ) {
 			if ( empty( $args['context'] ) || in_array( $context, $args['context'] ) ) {
 				$fields[] = $key;
 			}
@@ -512,7 +528,7 @@ EOT;
 
 		if ( $this->is_assoc_array( $dictated ) ) {
 
-			foreach( $dictated as $key => $value ) {
+			foreach ( $dictated as $key => $value ) {
 
 				if ( $this->is_assoc_array( $value ) || is_array( $value ) ) {
 
@@ -525,7 +541,7 @@ EOT;
 
 					$this->recursively_show_difference( $value, $new_current );
 
-				} else if ( is_string( $value ) ) {
+				} elseif ( is_string( $value ) ) {
 
 					$pre = $key . ': ';
 
@@ -534,28 +550,23 @@ EOT;
 						$this->remove_line( $pre . $current[ $key ] );
 						$this->add_line( $pre . $value );
 
-					} else if ( ! isset( $current[ $key ] ) ) {
+					} elseif ( ! isset( $current[ $key ] ) ) {
 
 						$this->add_line( $pre . $value );
 
 					}
-
 				}
-
 			}
+		} elseif ( is_array( $dictated ) ) {
 
-		} else if ( is_array( $dictated ) ) {
+			foreach ( $dictated as $value ) {
 
-			foreach( $dictated as $value ) {
-
-				if ( ! $current 
+				if ( ! $current
 					|| ! in_array( $value, $current ) ) {
 					$this->add_line( '- ' . $value );
 				}
-
 			}
-
-		} else if ( is_string( $value ) ) {
+		} elseif ( is_string( $value ) ) {
 
 			$pre = $key . ': ';
 
@@ -564,7 +575,7 @@ EOT;
 				$this->remove_line( $pre . $current[ $key ] );
 				$this->add_line( $pre . $value );
 
-			} else if ( ! isset( $current[ $key ] ) ) {
+			} elseif ( ! isset( $current[ $key ] ) ) {
 
 				$this->add_line( $pre . $value );
 
@@ -573,7 +584,6 @@ EOT;
 				$this->nested_line( $pre );
 
 			}
-
 		}
 
 		$this->output_nesting_level--;
@@ -606,7 +616,7 @@ EOT;
 		if ( 'add' == $change ) {
 			$color = '%G';
 			$label = '+ ';
-		} else if ( 'remove' == $change ) {
+		} elseif ( 'remove' == $change ) {
 			$color = '%R';
 			$label = '- ';
 		} else {
@@ -616,7 +626,7 @@ EOT;
 
 		$spaces = ( $this->output_nesting_level * 2 ) + 2;
 		if ( $color && $label ) {
-			$line = \cli\Colors::colorize( "{$color}{$label}" ) . $line . \cli\Colors::colorize( "%n" );
+			$line   = \cli\Colors::colorize( "{$color}{$label}" ) . $line . \cli\Colors::colorize( '%n' );
 			$spaces = $spaces - 2;
 		}
 		\WP_CLI::line( str_pad( ' ', $spaces ) . $line );
@@ -651,7 +661,7 @@ EOT;
 		if ( is_string( $fields ) ) {
 			$fields = explode( ',', $fields );
 		}
-		foreach( $item as $i => $field ) {
+		foreach ( $item as $i => $field ) {
 			if ( ! in_array( $i, $fields ) ) {
 				unset( $item[ $i ] );
 			}

@@ -81,7 +81,7 @@ trait Install {
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.
- 	 * @param array       $assoc_args Associative array of command options.
+	 * @param array       $assoc_args Associative array of command options.
 	 * @return null|true Returns `null` if an error is encountered and `true` on success.
 	 */
 	private function install_one( $slug, $addon, $assoc_args ) {

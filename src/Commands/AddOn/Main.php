@@ -81,9 +81,12 @@ class Main extends AbstractCommand {
 	 */
 	private function get_available_addons( $status, $check_license, $type = 'all' ) {
 
-		$list = \WP_CLI::runcommand( "llms addon list --format=json --status={$status} --fields=name,license,type", array(
-			'return' => true,
-		) );
+		$list = \WP_CLI::runcommand(
+			"llms addon list --format=json --status={$status} --fields=name,license,type",
+			array(
+				'return' => true,
+			)
+		);
 		$list = array_filter(
 			json_decode( $list, true ),
 			function( $item ) use ( $check_license, $type ) {
@@ -100,23 +103,25 @@ class Main extends AbstractCommand {
 	 *
 	 * @since [version]
 	 *
- 	 * @param array  assoc_args    Associative array of command options.
- 	 * @param string $filter_field The optional name of the field to filter results by.
- 	 * @return array[] Array of add-on items.
+	 * @param array  assoc_args    Associative array of command options.
+	 * @param string                                                    $filter_field The optional name of the field to filter results by.
+	 * @return array[] Array of add-on items.
 	 */
 	private function get_filtered_items( $assoc_args, $filter_field = '' ) {
 
 		$addons = llms_get_add_ons();
 
-		$list = array_filter( $addons['items'], function( $item ) {
-			return
-				// Skip anything without a slug.
+		$list = array_filter(
+			$addons['items'],
+			function( $item ) {
+				return // Skip anything without a slug.
 				! empty( $item['slug'] ) &&
 				// Skip the LifterLMS core.
 				'lifterlms' !== $item['slug'] &&
 				// Skip third party add-ons.
 				! in_array( 'third-party', array_keys( $item['categories'] ), true );
-		} );
+			}
+		);
 
 		// Format remaining items.
 		$list = array_map( array( $this, 'format_item' ), $list );
@@ -124,15 +129,21 @@ class Main extends AbstractCommand {
 		// Filter by field value.
 		if ( $filter_field ) {
 			$field_val = $assoc_args[ $filter_field ];
-			$list = array_filter( $list, function( $item ) use ( $filter_field, $field_val ) {
-				return $item[ $filter_field ] === $field_val;
-			} );
+			$list      = array_filter(
+				$list,
+				function( $item ) use ( $filter_field, $field_val ) {
+					return $item[ $filter_field ] === $field_val;
+				}
+			);
 		}
 
 		// Alpha sort the list by slug.
-		usort( $list, function( $a, $b ) {
-			return strcmp( $a['name'], $b['name'] );
-		} );
+		usort(
+			$list,
+			function( $a, $b ) {
+				return strcmp( $a['name'], $b['name'] );
+			}
+		);
 
 		return $list;
 
@@ -147,9 +158,9 @@ class Main extends AbstractCommand {
 	 * @param array    $assoc_args Associative array of command options from the original command.
 	 * @param string   $callback   Name of the method to use for handling a single add-on for the given command.
 	 *                             The callback should accept three arguments:
-	 *                             	+ @type string      $slug       Add-on slug for the current item.
-	 *                             	+ @type LLMS_Add_On $addon      Add-on object for the current item.
-	 *                             	+ @type array       $assoc_args Array of arguments from the initial command.
+	 *                              + @type string      $slug       Add-on slug for the current item.
+	 *                              + @type LLMS_Add_On $addon      Add-on object for the current item.
+	 *                              + @type array       $assoc_args Array of arguments from the initial command.
 	 *                             The callback should return a truthy to signal success and
 	 *                             a falsy to signal an error.
 	 * @return array {

@@ -61,9 +61,9 @@ trait Update {
 	 *
 	 * @since [version]
 	 *
- 	 * @param array $include    List of add-on slugs to be updated.
- 	 * @param array $assoc_args Associative array of command options.
- 	 * @return null
+	 * @param array $include    List of add-on slugs to be updated.
+	 * @param array $assoc_args Associative array of command options.
+	 * @return null
 	 */
 	public function update( $include, $assoc_args ) {
 
@@ -74,15 +74,17 @@ trait Update {
 		$exclude = ! empty( $assoc_args['exclude'] ) ? array_map( array( $this, 'prefix_slug' ), explode( ',', $assoc_args['exclude'] ) ) : array();
 
 		// Retrieve all available updates and we'll filter it down.
-		$list = \WP_CLI::runcommand( "llms addon list --format=json {$fieldopt}--update=available --fields=name,status,version,update_version", array(
-			'return' => true,
-		) );
+		$list = \WP_CLI::runcommand(
+			"llms addon list --format=json {$fieldopt}--update=available --fields=name,status,version,update_version",
+			array(
+				'return' => true,
+			)
+		);
 		$list = array_filter(
 			json_decode( $list, true ),
 			function( $item ) use ( $include, $exclude ) {
 				// Add-on is active and an update is available.
-				return
-					// Add-on is installed.
+				return // Add-on is installed.
 					in_array( $item['status'], array( 'active', 'inactive' ), true ) &&
 					// Not excluded.
 					! in_array( $item['name'], $exclude, true ) &&
@@ -98,7 +100,6 @@ trait Update {
 			}
 			return;
 		}
-
 
 		/**
 		 * The WP Core upgrader pulls information from the site transient.
@@ -124,7 +125,6 @@ trait Update {
 				} else {
 					$errors++;
 				}
-
 			}
 
 			\WP_CLI\Utils\report_batch_operation_results( 'add-on', 'update', count( $list ), $successes, $errors );

@@ -39,7 +39,7 @@ final class Main {
 	 * Singleton Instance of the LifterLMS_CLI class
 	 *
 	 * @since [version]
-	 * 
+	 *
 	 * @return LifterLMS_CLI
 	 */
 	public static function instance() {
@@ -56,7 +56,7 @@ final class Main {
 	 * Constructor
 	 *
 	 * @since [version]
-	 * 
+	 *
 	 * @return void
 	 */
 	private function __construct() {
@@ -91,11 +91,13 @@ final class Main {
 				'addon update',
 			);
 			foreach ( $helper_commands as $command ) {
-				\WP_CLI::add_hook( "before_add_command:llms {$command}", function( CommandAddition $command_addition ) {
-					$command_addition->abort( 'The LifterLMS Helper is required to use this command.' );
-				} );
+				\WP_CLI::add_hook(
+					"before_add_command:llms {$command}",
+					function( CommandAddition $command_addition ) {
+						$command_addition->abort( 'The LifterLMS Helper is required to use this command.' );
+					}
+				);
 			}
-
 		}
 
 	}

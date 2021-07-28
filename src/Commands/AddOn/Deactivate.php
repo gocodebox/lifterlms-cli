@@ -35,9 +35,9 @@ trait Deactivate {
 	 *
 	 * @since [version]
 	 *
- 	 * @param array $args       Indexed array of positional command arguments.
- 	 * @param array $assoc_args Associative array of command options.
- 	 * @return null
+	 * @param array $args       Indexed array of positional command arguments.
+	 * @param array $assoc_args Associative array of command options.
+	 * @return null
 	 */
 	public function deactivate( $args, $assoc_args ) {
 
@@ -64,7 +64,7 @@ trait Deactivate {
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.
- 	 * @param array       $assoc_args Associative array of command options.
+	 * @param array       $assoc_args Associative array of command options.
 	 * @return null|true Returns `null` if an error is encountered and `true` on success.
 	 */
 	private function deactivate_one( $slug, $addon, $assoc_args ) {
