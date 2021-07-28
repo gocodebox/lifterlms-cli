@@ -72,10 +72,30 @@ final class Main {
 
 	}
 
+	/**
+	 * Add all LifterLMS CLI commands
+	 *
+	 * This includes a separate file so that commands can be included on their own
+	 * when generating documentation.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
 	public function commands() {
 		require_once LLMS_CLI_PLUGIN_DIR . 'src/commands.php';
 	}
 
+	/**
+	 * Register WP_CLI hooks
+	 *
+	 * Loads all commands and sets up license and addon commands to be aborted
+	 * if the LifterLMS Helper is not present.
+	 *
+	 * @since [version]
+	 *
+	 * @return void
+	 */
 	private function hooks() {
 
 		\WP_CLI::add_hook( 'after_wp_load', array( $this, 'commands' ) );
