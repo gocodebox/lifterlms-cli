@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -15,7 +15,7 @@ use WP_CLI\Formatter;
 /**
  * AddOn Get command
  *
- * @since 0.0.1
+ * @since [version]
  */
 trait Get {
 
@@ -69,7 +69,7 @@ trait Get {
 	 * * changelog
 	 * * documentation
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.

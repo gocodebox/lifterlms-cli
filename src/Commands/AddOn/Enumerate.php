@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -17,7 +17,7 @@ use WP_CLI\Formatter;
  *
  * "List" is a php reserved keyword, so we enumerate instead.
  *
- * @since 0.0.1
+ * @since [version]
  *
  * @link https://www.php.net/manual/en/reserved.keywords.php
  */
@@ -99,7 +99,7 @@ trait Enumerate {
 	 *     # List all add-ons licensed on the site.
 	 *     wp llms addon list --license=active
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.

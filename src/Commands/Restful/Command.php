@@ -7,8 +7,8 @@
  *
  * @package LifterLMS_CLI/Classes
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  *
  * @link https://github.com/wp-cli/restful/blob/master/inc/RestCommand.php
  * @link https://github.com/wp-cli/restful/commit/021f1731c737fc1cb36ee06f0c34b73eb0d6aabb
@@ -19,7 +19,7 @@ namespace LifterLMS\CLI\Commands\Restful;
 /**
  * LifterLMS CLI Restful Commands
  *
- * @since 0.0.1
+ * @since [version]
  */
 class Command {
 

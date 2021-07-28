@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands\AddOn;
 /**
  * AddOn Activation command
  *
- * @since 0.0.1
+ * @since [version]
  */
 trait Activate {
 
@@ -28,7 +28,7 @@ trait Activate {
 	 * [--all]
 	 * : If set, all of the LifterLMS add-ons installed on the site will be activated.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.
@@ -55,7 +55,7 @@ trait Activate {
 	 *
 	 * Ensures add-on can be activated and actually activates the add-on.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.

@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands\AddOn;
 /**
  * AddOn Installation command
  *
- * @since 0.0.1
+ * @since [version]
  */
 trait Install {
 
@@ -45,7 +45,7 @@ trait Install {
 	 *   - theme
 	 * ---
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.
@@ -75,7 +75,7 @@ trait Install {
 	 *
 	 * Ensures add-on can be installed and actually installs (and maybe activates) the add-on.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.

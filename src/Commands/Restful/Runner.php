@@ -7,8 +7,8 @@
  *
  * @package LifterLMS_CLI/Classes
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  *
  * @link https://github.com/wp-cli/restful/blob/master/inc/Runner.php
  * @link https://github.com/wp-cli/restful/commit/6ea62c149944d8fcb31a7ade7b4f65fb72c8a5a3
@@ -22,7 +22,7 @@ namespace LifterLMS\CLI\Commands\Restful;
  * Hooks into the REST API, figures out which endpoints come from LifterLMS,
  * and registers them as CLI commands.
  *
- * @since 0.0.1
+ * @since [version]
  */
 class Runner {
 

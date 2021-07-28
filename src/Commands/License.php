@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -15,7 +15,7 @@ use WP_CLI\Formatter;
 /**
  * Manage LifterLMS License Keys
  *
- * @since 0.0.1
+ * @since [version]
  */
 class License extends AbstractCommand {
 
@@ -25,7 +25,7 @@ class License extends AbstractCommand {
 	 * [<key>]
 	 * : The license key to be activated.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null
@@ -50,7 +50,7 @@ class License extends AbstractCommand {
 	 * [<key>]
 	 * : The license key to be deactivated.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null
@@ -77,7 +77,7 @@ class License extends AbstractCommand {
 	 * [<key>]
 	 * : The license key to be deactivated.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @return null
 	 */

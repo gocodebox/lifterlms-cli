@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since 0.0.1
- * @version 0.0.1
+ * @since [version]
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands;
 /**
  * Base CLI command for use by LifterLMS CLI commands
  *
- * @since 0.0.1
+ * @since [version]
  */
 abstract class AbstractCommand extends \WP_CLI_Command {
 
@@ -30,7 +30,7 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	/**
 	 * Chain a command within the class
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param string $command      Method name of the command to chain.
 	 * @param array  $assoc_args   Associative array of command options.
@@ -46,7 +46,7 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	/**
 	 * Retrieve an LLMS_Add_On object for a given add-on by it's slug.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param string               $slug     An add-on slug. Must be prefixed.
 	 * @param bool|WP_Error|string $err      If truthy, will return `null` and use log to the console using a WP_CLI method as defined by $err_type.
@@ -73,7 +73,7 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	/**
 	 * Prefix an add-on slug with `lifterlms-` if it's not already present.
 	 *
-	 * @since 0.0.1
+	 * @since [version]
 	 *
 	 * @param string $slug Add-on slug.
 	 * @return string
