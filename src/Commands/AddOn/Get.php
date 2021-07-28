@@ -12,8 +12,6 @@ namespace LifterLMS\CLI\Commands\AddOn;
 
 use WP_CLI\Formatter;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * AddOn Get command
  *
@@ -103,8 +101,8 @@ trait Get {
 		if ( empty( $assoc_args['field'] ) ) {
 
 			$list = array();
-			foreach ( $item as $Field => $Value ) {
-				if ( ! in_array( $Field, $assoc_args['fields'], true ) ) {
+			foreach ( $item as $Field => $Value ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+				if ( ! in_array( $Field, $assoc_args['fields'], true ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 					continue;
 				}
 				$list[] = compact( 'Field', 'Value' );

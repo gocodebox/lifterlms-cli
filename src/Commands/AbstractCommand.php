@@ -10,8 +10,6 @@
 
 namespace LifterLMS\CLI\Commands;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * Base CLI command for use by LifterLMS CLI commands
  *

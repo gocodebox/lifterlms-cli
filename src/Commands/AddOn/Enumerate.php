@@ -12,8 +12,6 @@ namespace LifterLMS\CLI\Commands\AddOn;
 
 use WP_CLI\Formatter;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * AddOn List command
  *

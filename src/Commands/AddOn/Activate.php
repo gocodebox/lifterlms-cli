@@ -10,8 +10,6 @@
 
 namespace LifterLMS\CLI\Commands\AddOn;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * AddOn Activation command
  *

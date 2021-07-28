@@ -12,8 +12,6 @@ namespace LifterLMS\CLI\Commands;
 
 use WP_CLI\Formatter;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * Manage LifterLMS License Keys
  *

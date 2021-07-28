@@ -13,8 +13,6 @@ namespace LifterLMS\CLI\Commands\AddOn;
 use LifterLMS\CLI\Commands\AbstractCommand;
 use WP_CLI\Formatter;
 
-// defined( 'ABSPATH' ) || exit;
-
 /**
  * Manage LifterLMS add-on plugins and themes.
  *
