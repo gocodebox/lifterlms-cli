@@ -17,7 +17,8 @@
     "php": ">=7.3"
   },
   "require-dev": {
-    "lifterlms/lifterlms-tests": "dev-trunk"
+    "lifterlms/lifterlms-tests": "dev-trunk",
+    "lifterlms/lifterlms-cs": "dev-trunk"
   },
   "autoload": {
     "psr-4": {
@@ -25,8 +26,13 @@
     }
   },
   "scripts": {
+    "check-cs": "\"vendor/bin/phpcs\" --colors",
+    "check-cs-errors": "\"vendor/bin/phpcs\" --colors --error-severity=1 --warning-severity=6",
+    "config-cs": [
+      "\"vendor/bin/phpcs\" --config-set installed_paths ../../../vendor/wp-coding-standards/wpcs,../../../vendor/lifterlms/lifterlms-cs,../../../vendor/phpcompatibility/php-compatibility,../../../vendor/phpcompatibility/phpcompatibility-paragonie,../../../vendor/phpcompatibility/phpcompatibility-wp",
+      "\"vendor/bin/phpcs\" --config-set default_standard 'LifterLMS Core'"
+    ],
 
-    "check-cs": "run-phpcs-tests",
     "docs": "wp llms-docs --require=bin/Command.php --require=vendor/autoload.php --require=src/commands.php",
 
     "tests-install": "\"vendor/bin/llms-tests\" install-cli ${TESTS_DB_NAME:-llms_cli_tests} ${TESTS_DB_USER:-root} \"${TESTS_DB_PASS-password}\" ${TESTS_DB_HOST:-127.0.0.1}",

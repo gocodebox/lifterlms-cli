@@ -1,27 +1,21 @@
 <?xml version="1.0"?>
 <ruleset name="LifterLMS CLI">
-<description>Custom ruleset for LifterLMS CLI</description>
 
-    <!-- What to scan. -->
-    <file>.</file>
+	<description>LifterLMS CLI rules for PHP_CodeSniffer</description>
 
-    <!-- Show progress. -->
-    <arg value="sp"/>
+	<file>.</file>
 
-    <!-- Show colors -->
-    <arg name="colors"/>
+	<rule ref="LifterLMS" />
 
-    <!-- Strip the filepaths down to the relevant bit. -->
-    <arg name="basepath" value="./" />
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="lifterlms" />
+			</property>
+		</properties>
+	</rule>
 
-    <!-- Check up to 8 files simultaneously. -->
-    <arg name="parallel" value="8" />
-
-    <!-- For help understanding the `testVersion` configuration setting:
-         https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
-    <config name="testVersion" value="5.4-"/>
-
-    <!-- Rules: Include the base ruleset for WP-CLI projects. -->
-    <rule ref="WP_CLI_CS"/>
+	<exclude-pattern>./bin/*</exclude-pattern>
+	<exclude-pattern>./docs/*</exclude-pattern>
 
 </ruleset>
