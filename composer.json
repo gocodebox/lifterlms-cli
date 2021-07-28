@@ -16,6 +16,28 @@
   "require": {
     "php": ">=7.3"
   },
+  "archive": {
+    "exclude": [
+      ".*",
+      "*.json",
+      "*.lock",
+      "*.xml",
+      "*.xml.dist",
+      "*.yml",
+
+      "README.md",
+
+      "bin",
+      "dist",
+      "docs",
+      "node_modules",
+      "tests",
+      "tmp",
+      "vendor",
+
+      "!/composer.json"
+    ]
+  },
   "require-dev": {
     "lifterlms/lifterlms-tests": "dev-trunk",
     "lifterlms/lifterlms-cs": "dev-trunk"
