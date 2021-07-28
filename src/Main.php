@@ -65,8 +65,6 @@ final class Main {
 			define( 'LLMS_CLI_VERSION', $this->version );
 		}
 
-		add_action( 'init', array( $this, 'load_textdomain' ), 0 );
-
 		// Get started (after REST).
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
@@ -136,43 +134,6 @@ final class Main {
 			$this->hooks();
 
 		}
-
-	}
-
-	/**
-	 * Load l10n files.
-	 *
-	 * This method is only used when the plugin is loaded as a standalone plugin (for development purposes),
-	 * otherwise (when loaded as a library from within the LifterLMS core plugin) the localization
-	 * strings are included into the LifterLMS Core plugin's po/mo files and are localized by the LifterLMS
-	 * core plugin.
-	 *
-	 * Files can be found in the following order (The first loaded file takes priority):
-	 *   1. WP_LANG_DIR/lifterlms/lifterlms-cli-LOCALE.mo
-	 *   2. WP_LANG_DIR/plugins/lifterlms-cli-LOCALE.mo
-	 *   3. WP_CONTENT_DIR/plugins/lifterlms-cli/i18n/lifterlms-cli-LOCALE.mo
-	 *
-	 * Note: The function `load_plugin_textdomain()` is not used because the same textdomain as the LifterLMS core
-	 * is used for this plugin but the file is named `lifterlms-cli` in order to allow using a separate language
-	 * file for each codebase.
-	 *
-	 * @since [version]
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-
-		// load locale.
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'lifterlms' );
-
-		// Load from the LifterLMS "safe" directory if it exists.
-		load_textdomain( 'lifterlms', WP_LANG_DIR . '/lifterlms/lifterlms-cli-' . $locale . '.mo' );
-
-		// Load from the default plugins language file directory.
-		load_textdomain( 'lifterlms', WP_LANG_DIR . '/plugins/lifterlms-cli-' . $locale . '.mo' );
-
-		// Load from the plugin's language file directory.
-		load_textdomain( 'lifterlms', LLMS_REST_API_PLUGIN_DIR . '/i18n/lifterlms-cli-' . $locale . '.mo' );
 
 	}
 
