@@ -6,8 +6,8 @@
  *
  * @package LifterLMS/CLI/Docs;
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  *
  * @link https://github.com/wp-cli/handbook/blob/master/bin/command.php
  */
@@ -28,7 +28,7 @@ define( 'LLMS_CLI_DOCS_PATH', LLMS_CLI_ROOT_DIR . '/docs' );
 /**
  * Generate documentation for LifterLMS CLI commands
  *
- * @since [version]
+ * @since 0.0.1
  *
  * @when before_wp_load
  */

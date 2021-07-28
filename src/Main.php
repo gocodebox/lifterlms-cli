@@ -4,8 +4,8 @@
  *
  * @package LifterLMS_CLI/Classes
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  */
 
 namespace LifterLMS\CLI;
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * LifterLMS Assignments Main Class
  *
- * @since [version]
+ * @since 0.0.1
  */
 final class Main {
 
@@ -38,7 +38,7 @@ final class Main {
 	/**
 	 * Singleton Instance of the LifterLMS_CLI class
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @return LifterLMS_CLI
 	 */
@@ -55,7 +55,7 @@ final class Main {
 	/**
 	 * Constructor
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @return void
 	 */
@@ -76,7 +76,7 @@ final class Main {
 	 * This includes a separate file so that commands can be included on their own
 	 * when generating documentation.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @return void
 	 */
@@ -90,7 +90,7 @@ final class Main {
 	 * Loads all commands and sets up license and addon commands to be aborted
 	 * if the LifterLMS Helper is not present.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @return void
 	 */

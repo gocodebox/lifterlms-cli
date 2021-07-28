@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -15,7 +15,7 @@ use WP_CLI\Formatter;
 /**
  * AddOn Update command
  *
- * @since [version]
+ * @since 0.0.1
  */
 trait Update {
 
@@ -57,7 +57,7 @@ trait Update {
 	 * [--dry-run]
 	 * : Preview which plugins would be updated.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param array $include    List of add-on slugs to be updated.
 	 * @param array $assoc_args Associative array of command options.

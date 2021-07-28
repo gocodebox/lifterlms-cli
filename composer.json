@@ -33,7 +33,7 @@
       "node_modules",
       "tests",
       "tmp",
-      "vendor",
+      "!/vendor",
 
       "!/composer.json"
     ]

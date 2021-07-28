@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands;
 /**
  * Manage LifterLMS.
  *
- * @since [version]
+ * @since 0.0.1
  */
 class Root extends AbstractCommand {
 
@@ -42,7 +42,7 @@ class Root extends AbstractCommand {
 	 *     # Show an add-on version with the "lifterlms-" prefix.
 	 *     wp llms version lifterlms-assignments
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.

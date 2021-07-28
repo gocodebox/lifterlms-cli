@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI/Main
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  *
  * Plugin Name: LifterLMS CLI
  * Plugin URI: https://lifterlms.com/
@@ -49,7 +49,7 @@ require_once LLMS_CLI_PLUGIN_DIR . 'vendor/autoload.php';
 /**
  * Main Plugin Instance
  *
- * @since [version]
+ * @since 0.0.1
  *
  * @return LLMS_CLI
  */

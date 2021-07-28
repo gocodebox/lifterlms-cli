@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -16,7 +16,7 @@ use WP_CLI\Formatter;
 /**
  * Manage LifterLMS add-on plugins and themes.
  *
- * @since [version]
+ * @since 0.0.1
  */
 class Main extends AbstractCommand {
 
@@ -33,7 +33,7 @@ class Main extends AbstractCommand {
 	/**
 	 * Accepts an add-on array and converts it to the format used by the output method
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param array|LLMS_Add_On $item_or_addon Add-on object or add-on item array array from `llms_get_add_ons()`.
 	 * @return array Associative array containing all possible fields as used by the output method.
@@ -70,7 +70,7 @@ class Main extends AbstractCommand {
 	 *
 	 * This is used, mostly, to generate a list of available addons for various commands which provide an `--all` flag/option.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param string $status        Add-on status, passed as the `--status` option to `llms addon list`.
 	 * @param bool   $check_license Whether or not the add-on should be licensed. This is used to determine what is installable / upgradeable.
@@ -99,7 +99,7 @@ class Main extends AbstractCommand {
 	/**
 	 * Retrieves an optionally filtered list of add-ons for use in the `list` command.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param array  assoc_args    Associative array of command options.
 	 * @param string                                                    $filter_field The optional name of the field to filter results by.
@@ -150,7 +150,7 @@ class Main extends AbstractCommand {
 	/**
 	 * Reusable loop function for handling commands which accept one or more slugs as the commands first argument
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param string[] $slugs      Array of add-on slugs, with or without the `lifterlms-` prefix.
 	 * @param array    $assoc_args Associative array of command options from the original command.

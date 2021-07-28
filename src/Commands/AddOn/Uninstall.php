@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.1
+ * @version 0.0.1
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands\AddOn;
 /**
  * AddOn Uninstall command
  *
- * @since [version]
+ * @since 0.0.1
  */
 trait Uninstall {
 
@@ -42,7 +42,7 @@ trait Uninstall {
 	 *   - theme
 	 * ---
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.
@@ -69,7 +69,7 @@ trait Uninstall {
 	 *
 	 * Ensures add-on can be uninstalled and actually installs (and maybe deactivates) the add-on.
 	 *
-	 * @since [version]
+	 * @since 0.0.1
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.
