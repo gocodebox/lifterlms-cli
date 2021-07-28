@@ -16,7 +16,7 @@
 
 namespace LifterLMS\CLI\Commands\Restful;
 
-defined( 'ABSPATH' ) || exit;
+// defined( 'ABSPATH' ) || exit;
 
 /**
  * LifterLMS REST API to LifterLMS CLI Bridge.

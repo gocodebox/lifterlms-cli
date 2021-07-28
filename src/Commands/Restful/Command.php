@@ -16,7 +16,7 @@
 
 namespace LifterLMS\CLI\Commands\Restful;
 
-defined( 'ABSPATH' ) || exit;
+// defined( 'ABSPATH' ) || exit;
 
 /**
  * LifterLMS CLI Restful Commands

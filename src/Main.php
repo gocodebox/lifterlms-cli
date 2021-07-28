@@ -79,7 +79,6 @@ final class Main {
 	private function hooks() {
 
 		\WP_CLI::add_hook( 'after_wp_load', array( $this, 'commands' ) );
-		\WP_CLI::add_hook( 'after_wp_load', 'LifterLMS\CLI\Commands\Restful\Runner::after_wp_load' );
 
 		// If the Helper doesn't exist abort command addition.
 		if ( ! class_exists( 'LifterLMS_Helper' ) ) {
