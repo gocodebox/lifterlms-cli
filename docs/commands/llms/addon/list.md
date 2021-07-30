@@ -47,8 +47,8 @@ These fields are optionally available:
 
 ### EXAMPLES
 
-	   # List all add-ons.
-	   wp llms addon list
+    # List all add-ons.
+    wp llms addon list
 
     # List all add-ons in JSON format.
     wp llms addon list --format=json
@@ -62,7 +62,7 @@ These fields are optionally available:
     # List all add-ons with a custom fields list.
     wp llms addon list --fields=title,status,version
 
-	   # List currently activated add-ons.
+    # List currently activated add-ons.
     wp llms addon list --status=active
 
     # List all theme add-ons.

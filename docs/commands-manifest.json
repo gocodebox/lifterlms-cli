@@ -4,104 +4,104 @@
         "slug": "llms",
         "cmd_path": "llms",
         "parent": null,
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms.md"
     },
     "llms\/addon": {
         "title": "llms addon",
         "slug": "addon",
         "cmd_path": "llms\/addon",
         "parent": "llms",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon.md"
     },
     "llms\/license": {
         "title": "llms license",
         "slug": "license",
         "cmd_path": "llms\/license",
         "parent": "llms",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/license.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/license.md"
     },
     "llms\/version": {
         "title": "llms version",
         "slug": "version",
         "cmd_path": "llms\/version",
         "parent": "llms",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/version.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/version.md"
     },
     "llms\/addon\/activate": {
         "title": "llms addon activate",
         "slug": "activate",
         "cmd_path": "llms\/addon\/activate",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/activate.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/activate.md"
     },
     "llms\/addon\/channel-set": {
         "title": "llms addon channel-set",
         "slug": "channel-set",
         "cmd_path": "llms\/addon\/channel-set",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/channel-set.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/channel-set.md"
     },
     "llms\/addon\/deactivate": {
         "title": "llms addon deactivate",
         "slug": "deactivate",
         "cmd_path": "llms\/addon\/deactivate",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/deactivate.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/deactivate.md"
     },
     "llms\/addon\/get": {
         "title": "llms addon get",
         "slug": "get",
         "cmd_path": "llms\/addon\/get",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/get.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/get.md"
     },
     "llms\/addon\/install": {
         "title": "llms addon install",
         "slug": "install",
         "cmd_path": "llms\/addon\/install",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/install.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/install.md"
     },
     "llms\/addon\/list": {
         "title": "llms addon list",
         "slug": "list",
         "cmd_path": "llms\/addon\/list",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/list.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/list.md"
     },
     "llms\/addon\/uninstall": {
         "title": "llms addon uninstall",
         "slug": "uninstall",
         "cmd_path": "llms\/addon\/uninstall",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/uninstall.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/uninstall.md"
     },
     "llms\/addon\/update": {
         "title": "llms addon update",
         "slug": "update",
         "cmd_path": "llms\/addon\/update",
         "parent": "llms\/addon",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/addon\/update.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/addon\/update.md"
     },
     "llms\/license\/activate": {
         "title": "llms license activate",
         "slug": "activate",
         "cmd_path": "llms\/license\/activate",
         "parent": "llms\/license",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/license\/activate.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/license\/activate.md"
     },
     "llms\/license\/deactivate": {
         "title": "llms license deactivate",
         "slug": "deactivate",
         "cmd_path": "llms\/license\/deactivate",
         "parent": "llms\/license",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/license\/deactivate.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/license\/deactivate.md"
     },
     "llms\/license\/list": {
         "title": "llms license list",
         "slug": "list",
         "cmd_path": "llms\/license\/list",
         "parent": "llms\/license",
-        "markdown_source": "https:\/\/github.com\/wp-cli\/handbook\/blob\/master\/commands\/llms\/license\/list.md"
+        "markdown_source": "https:\/\/github.com\/gocodebox\/lifterlms-cli\/blob\/trunk\/docs\/commands\/llms\/license\/list.md"
     }
 }

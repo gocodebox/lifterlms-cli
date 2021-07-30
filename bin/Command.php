@@ -171,7 +171,7 @@ class Command {
 					'slug'            => $slug,
 					'cmd_path'        => $cmd_path,
 					'parent'          => $parent,
-					'markdown_source' => sprintf( 'https://github.com/wp-cli/handbook/blob/master/commands/%s.md', $cmd_path ),
+					'markdown_source' => sprintf( 'https://github.com/gocodebox/lifterlms-cli/blob/trunk/docs/commands/%s.md', $cmd_path ),
 				);
 				if ( ! empty( $commands_data[ $title ] ) ) {
 					$manifest[ $cmd_path ] = array_merge( $manifest[ $cmd_path ], $commands_data[ $title ] );
