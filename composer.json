@@ -56,7 +56,7 @@
     ],
     "fix-cs": "\"vendor/bin/phpcbf\"",
 
-    "docs": "wp llms-docs --require=bin/Command.php --require=vendor/autoload.php --require=src/commands.php",
+    "docs": "wp llms-docs --require=bin/Command.php --require=vendor/autoload.php",
 
     "tests-install": "\"vendor/bin/llms-tests\" install-cli ${TESTS_DB_NAME:-llms_cli_tests} ${TESTS_DB_USER:-root} \"${TESTS_DB_PASS-password}\" ${TESTS_DB_HOST:-127.0.0.1}",
 

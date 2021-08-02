@@ -24,6 +24,16 @@ use WP_CLI\Utils;
 define( 'LLMS_CLI_ROOT_DIR', dirname( dirname( __FILE__ ) ) );
 define( 'LLMS_CLI_DOCS_PATH', LLMS_CLI_ROOT_DIR . '/docs' );
 
+// Bootstrap additional files necessary
+\WP_CLI::add_hook( 'before_run_command', function() {
+
+	// Load WordPress (so that the REST API is available for generating restful command docs).
+	require_once ABSPATH . 'wp-load.php';
+
+	// Include commands.
+	require_once LLMS_CLI_ROOT_DIR . '/src/commands.php';
+
+} );
 
 /**
  * Generate documentation for LifterLMS CLI commands
@@ -45,10 +55,6 @@ class Command {
 	 * @subcommand gen-all
 	 */
 	public function gen_all( $args, $assoc_args ) {
-		// Warn if not invoked with null WP_CLI_CONFIG_PATH.
-		if ( '/dev/null' !== getenv( 'WP_CLI_CONFIG_PATH' ) ) {
-			WP_CLI::warning( "Should be invoked on the target WP-CLI with 'WP_CLI_CONFIG_PATH=/dev/null'." );
-		}
 
 		self::gen_commands( $args, $assoc_args );
 		self::gen_commands_manifest();
