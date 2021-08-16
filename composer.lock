@@ -540,19 +540,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gocodebox/lifterlms-tests.git",
-                "reference": "56d74c90fd20462ce57bdb46a552ecf40618e42a"
+                "reference": "4e522a8dac0a599baef74f10e9bbe7d526142330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gocodebox/lifterlms-tests/zipball/56d74c90fd20462ce57bdb46a552ecf40618e42a",
-                "reference": "56d74c90fd20462ce57bdb46a552ecf40618e42a",
+                "url": "https://api.github.com/repos/gocodebox/lifterlms-tests/zipball/4e522a8dac0a599baef74f10e9bbe7d526142330",
+                "reference": "4e522a8dac0a599baef74f10e9bbe7d526142330",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
-                "phpunit/phpunit": "^7.5",
                 "wp-cli/extension-command": "^2.1.0",
-                "wp-cli/wp-cli-tests": "^3.0.15"
+                "wp-cli/wp-cli-tests": "^3.0.15",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "default-branch": true,
             "bin": [
@@ -580,7 +580,7 @@
                 "issues": "https://github.com/gocodebox/lifterlms-tests/issues",
                 "source": "https://github.com/gocodebox/lifterlms-tests/tree/trunk"
             },
-            "time": "2021-07-20T23:38:42+00:00"
+            "time": "2021-08-11T22:55:19+00:00"
         },
         {
             "name": "mustache/mustache",
