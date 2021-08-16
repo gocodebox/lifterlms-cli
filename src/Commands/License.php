@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands;
 use WP_CLI\Formatter;
 
 /**
- * Manage LifterLMS License Keys
+ * Manage LifterLMS License Keys.
  *
  * @since 0.0.1
  */
