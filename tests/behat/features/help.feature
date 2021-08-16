@@ -34,6 +34,7 @@ Feature: Run help commands
 			  api-key                   Manage api keys.
 			  course                    Manage courses.
 			  instructor                Manage instructors.
+			  license                   Manage LifterLMS License Keys.
 			  lesson                    Manage lessons.
 			  membership                Manage memberships.
 			  section                   Manage sections.
