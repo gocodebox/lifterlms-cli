@@ -8,10 +8,6 @@ Feature: Version command
 		Then STDERR should be empty
 		And STDOUT should be a version string > 0.0.0
 
-		When I run the command `wp llms version --db`
-		Then STDERR should be empty
-		And STDOUT should be a version string > 0.0.0
-
 	Scenario Outline: Provide valid slugs
 		When I run the command `wp llms version <slug>`
 		Then STDERR should be empty

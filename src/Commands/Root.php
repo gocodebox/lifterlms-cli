@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version 0.0.1
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -23,11 +23,6 @@ class Root extends AbstractCommand {
 	 * [<slug>]
 	 * : The slug of the LifterLMS plugin or theme. Default: lifterlms.
 	 *
-	 * ## OPTIONS
-	 *
-	 * [--db]
-	 * : Display the database version.
-	 *
 	 * ## EXAMPLES
 	 *
 	 *     # Show the LifterLMS core plugin version
@@ -43,17 +38,13 @@ class Root extends AbstractCommand {
 	 *     wp llms version lifterlms-assignments
 	 *
 	 * @since 0.0.1
+	 * @since [version] Remove `--db` option. This will be implemented in a separate command.
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.
 	 * @return null
 	 */
 	public function version( $args, $assoc_args ) {
-
-		// @todo Implement --db option.
-		if ( ! empty( $assoc_args['db'] ) ) {
-			return \WP_CLI::error( 'Not implemented.' );
-		}
 
 		$slug = empty( $args[0] ) ? 'core' : $args[0];
 		if ( in_array( $slug, array( 'core', 'lifterlms' ), true ) ) {
