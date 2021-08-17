@@ -12,7 +12,7 @@ on:
 
 jobs:
 
-  behat: #----------------------------------------------------------------------
+  behat:
     name: 'Behat Tests: WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }} (Coverage: ${{ matrix.coverage }})'
     strategy:
       fail-fast: false
@@ -30,7 +30,7 @@ jobs:
         include:
           - php: '8.0'
             wp: 'latest'
-            mysql: '8.0'
+            mysql: '7.4'
             coverage: 'xdebug'
             continue-on-error: true
     runs-on: ubuntu-20.04
@@ -97,3 +97,12 @@ jobs:
 
       - name: Run Behat Tests
         run: composer run tests-behat
+
+      - name: Upload Test Coverage Reports
+        if: ${{ matrix.coverage == 'xdebug' }}
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.LLMS_CLI_TEST_KEY_INFINITY }}
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:Clover
