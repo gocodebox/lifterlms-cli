@@ -71,8 +71,6 @@ jobs:
 
       - name: Start MySQL
         run: sudo systemctl start mysql.service
-      - name: Create MySQL database
-        run: mysql --user=$MYSQL_USER --password=$MYSQL_PASSWORD -e "CREATE DATABASE \`$MYSQL_DATABASE\` ;"
 
       # - name: Configure DB environment
       #   run: |
