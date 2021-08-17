@@ -3,7 +3,7 @@ name: Testing
 on:
   pull_request:
   schedule:
-    # Nightly at 7pm UTC.
+    # Nightly at 7am UTC / 12am PHX.
     - cron:  '0 7 * * *'
   push:
     branches:
@@ -105,4 +105,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.LLMS_CLI_TEST_KEY_INFINITY }}
         with:
           coverageLocations: |
-            ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:Clover
+            ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:clover
