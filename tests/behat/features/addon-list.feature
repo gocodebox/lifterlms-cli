@@ -19,8 +19,8 @@ Feature: Add-on list command
 		When I run the command `wp llms addon list --name=lifterlms-groups --fields=all`
 		Then STDERR should be empty
 		And STDOUT should be a table containing rows:
-			| name             | status      | update    | version | update_version   | license  | title            | type   | file                                  |
-			| lifterlms-groups | uninstalled | available | N/A     | {UPDATE_VERSION} | inactive | LifterLMS Groups | plugin | lifterlms-groups/lifterlms-groups.php |
+			| name             | status      | update    | version | update_version   | license  | title            | channel | type   | file                                  |
+			| lifterlms-groups | uninstalled | available | N/A     | {UPDATE_VERSION} | inactive | LifterLMS Groups | stable  | plugin | lifterlms-groups/lifterlms-groups.php |
 
 		When I run the command `wp llms addon list --type=theme --fields=name,title`
 		Then STDERR should be empty
