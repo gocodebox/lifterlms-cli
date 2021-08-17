@@ -13,7 +13,7 @@ on:
 jobs:
 
   behat: #----------------------------------------------------------------------
-    name: 'Behat Tests: WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }} (Coverage: ${{ matrix.coverage }} )'
+    name: 'Behat Tests: WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }} (Coverage: ${{ matrix.coverage }})'
     strategy:
       fail-fast: false
       matrix:
@@ -32,6 +32,7 @@ jobs:
             wp: 'latest'
             mysql: '8.0'
             coverage: 'xdebug'
+            continue-on-error: true
     runs-on: ubuntu-20.04
     env:
       MYSQL_DATABASE: llms_cli_tests
