@@ -13,24 +13,32 @@ on:
 jobs:
 
   behat: #----------------------------------------------------------------------
-    name: Behat - WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }}
+    name: 'Behat Tests: WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }} (Coverage: ${{ matrix.coverage }} )'
     strategy:
       fail-fast: false
       matrix:
         php:
-          # - '7.3'
-          # - '7.4'
+          - '7.3'
+          - '7.4'
           - '8.0'
         wp:
           - 'latest'
         mysql:
           - '8.0'
+        coverage:
+          - 'none'
+        include:
+          - php: '8.0'
+            wp: 'latest'
+            mysql: '8.0'
+            coverage: 'xdebug'
     runs-on: ubuntu-20.04
     env:
       MYSQL_DATABASE: llms_cli_tests
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: '127.0.0.1'
+      LLMS_CLI_TEST_KEY_INFINITY: ${{ secrets.LLMS_CLI_TEST_KEY_INFINITY }}
 
     services:
       mysql:
@@ -48,7 +56,7 @@ jobs:
         with:
           php-version: '${{ matrix.php }}'
           extensions: gd, imagick, mysql, zip
-          # coverage: none
+          coverage: '${{ matrix.coverage }}'
           tools: composer
 
       - name: Get Composer cache Directory
@@ -80,6 +88,11 @@ jobs:
 
       - name: Install tests
         run: composer run tests-install
+
+      - name: Configure Test Coverage
+        if: ${{ matrix.coverage == 'xdebug' }}
+        run: |
+          echo "RUN_CODE_COVERAGE=1" >> $GITHUB_ENV
 
       - name: Run Behat Tests
         run: composer run tests-behat
