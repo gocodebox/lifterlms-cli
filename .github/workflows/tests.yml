@@ -29,7 +29,7 @@ jobs:
     env:
       MYSQL_DATABASE: llms_cli_tests
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: password
 
     services:
       mysql:
