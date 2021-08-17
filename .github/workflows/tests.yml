@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - trunk
+  workflow_dispatch
 
 jobs:
 
@@ -26,15 +27,16 @@ jobs:
           - '8.0'
     runs-on: ubuntu-20.04
     env:
-      MYSQL_DATABASE: llms_cli
+      MYSQL_DATABASE: llms_cli_tests
       MYSQL_USER: root
       MYSQL_PASSWORD: root
+      TESTS_DB_HOST: ${{}}
 
-    services:
-      mysql:
-        image: mysql:${{ matrix.mysql }}
-        ports:
-          - 3306
+    # services:
+    #   mysql:
+    #     image: mysql:${{ matrix.mysql }}
+    #     ports:
+    #       - 3306
         # options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp_cli_test --entrypoint sh mysql:${{ matrix.mysql }} -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
 
     steps:
