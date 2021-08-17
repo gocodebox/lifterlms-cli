@@ -17,3 +17,6 @@ WP CLI commands for [LifterLMS](https://github.com/gocodebox/lifterlms)
 [link-cc]: https://codeclimate.com/github/gocodebox/lifterlms-cli "Maintainability reports on Code Climate"
 [link-cc-coverage]: https://codeclimate.com/github/gocodebox/lifterlms-cli/coverage "Code coverage reports on Code Climate"
 [link-gh-testing]: https://github.com/gocodebox/lifterlms-cli/actions/workflows/tests.yml "Testing workflow on GitHub Actions"
+
+---
+
