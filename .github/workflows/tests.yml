@@ -31,12 +31,12 @@ jobs:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
 
-    # services:
-    #   mysql:
-    #     image: mysql:${{ matrix.mysql }}
-    #     ports:
-    #       - 3306
-        # options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp_cli_test --entrypoint sh mysql:${{ matrix.mysql }} -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+    services:
+      mysql:
+        image: mysql:${{ matrix.mysql }}
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=llms_cli_tests --entrypoint sh mysql:${{ matrix.mysql }} -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
 
     steps:
       - name: Check out source code
@@ -68,9 +68,6 @@ jobs:
 
       - name: Start MySQL server
         run: sudo systemctl start mysql
-
-      - name: Start MySQL
-        run: sudo systemctl start mysql.service
 
       # - name: Configure DB environment
       #   run: |
