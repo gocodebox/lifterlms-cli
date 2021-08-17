@@ -69,16 +69,16 @@ jobs:
       - name: Start MySQL server
         run: sudo systemctl start mysql
 
-      # - name: Configure DB environment
-      #   run: |
-      #     echo "MYSQL_HOST=127.0.0.1" >> $GITHUB_ENV
-      #     echo "MYSQL_TCP_PORT=${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBROOTUSER=root" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBROOTPASS=root" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBNAME=wp_cli_test" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBUSER=wp_cli_test" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBPASS=password1" >> $GITHUB_ENV
-      #     echo "WP_CLI_TEST_DBHOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
+      - name: Configure DB environment
+        run: |
+          echo "MYSQL_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "MYSQL_TCP_PORT=${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBROOTUSER=root" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBROOTPASS=password" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBNAME=llms_cli_tests" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBUSER=llms_cli_tests" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBPASS=password" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBHOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
 
       - name: Install tests
         run: composer run tests-install
