@@ -18,9 +18,9 @@ jobs:
       fail-fast: false
       matrix:
         php:
-          - '7.3'
-          - '7.4'
           - '8.0'
+          - '7.4'
+          - '7.3'
         wp:
           - 'latest'
         mysql:
@@ -95,14 +95,24 @@ jobs:
         run: |
           echo "RUN_CODE_COVERAGE=1" >> $GITHUB_ENV
 
-      - name: Run Behat Tests
+      - name: Configure API Integration Tests
+        if: ${{ matrix.coverage == 'xdebug' || matrix.php == '8.0' }}
+        run: |
+          echo "RUN_API_INTEGRATION_TESTS=1" >> $GITHUB_ENV
+
+      - name: Run Behat Tests (excluding @api-integration)
+        if: ${{ env.RUN_API_INTEGRATION_TESTS != '1' }}
+        run: composer run tests-behat -- --tags '~@api-integration'
+
+      - name: Run Behat Tests (all)
+        if: ${{ env.RUN_API_INTEGRATION_TESTS == '1' }}
         run: composer run tests-behat
 
       - name: Upload Test Coverage Reports
         if: ${{ matrix.coverage == 'xdebug' }}
         uses: paambaati/codeclimate-action@v2.7.5
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.LLMS_CLI_TEST_KEY_INFINITY }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageLocations: |
             ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:clover
