@@ -43,6 +43,7 @@ Feature: Version command
 			| lifterlms-assignments             |
 			| lifterlms-integration-woocommerce |
 
+	@api-integration
 	Scenario Outline: Use installed add-on slugs
 		Given the LifterLMS Add-on "lifterlms-groups" is installed
 		When I run the command `wp llms version <slug>`
