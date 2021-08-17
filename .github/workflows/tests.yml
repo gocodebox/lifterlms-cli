@@ -30,7 +30,6 @@ jobs:
       MYSQL_DATABASE: llms_cli_tests
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      TESTS_DB_HOST: ${{}}
 
     # services:
     #   mysql:
