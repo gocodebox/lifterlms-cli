@@ -18,8 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         php:
-          - '7.3'
-          - '7.4'
+          # - '7.3'
+          # - '7.4'
           - '8.0'
         wp:
           - 'latest'
@@ -30,6 +30,7 @@ jobs:
       MYSQL_DATABASE: llms_cli_tests
       MYSQL_USER: root
       MYSQL_PASSWORD: password
+      MYSQL_HOST: '127.0.0.1'
 
     services:
       mysql:
@@ -71,14 +72,11 @@ jobs:
 
       - name: Configure DB environment
         run: |
-          echo "MYSQL_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "TESTS_DB_NAME=$MYSQL_DATABASE" >> $GITHUB_ENV
+          echo "TESTS_DB_HOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
           echo "MYSQL_TCP_PORT=${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBROOTUSER=root" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBROOTPASS=password" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBNAME=llms_cli_tests" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBUSER=llms_cli_tests" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBPASS=password" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBHOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBUSER=$MYSQL_USER" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBROOTPASS=$MYSQL_PASSWORD" >> $GITHUB_ENV
 
       - name: Install tests
         run: composer run tests-install
