@@ -28,9 +28,9 @@ jobs:
         coverage:
           - 'none'
         include:
-          - php: '8.0'
+          - php: '7.4'
             wp: 'latest'
-            mysql: '7.4'
+            mysql: '8.0'
             coverage: 'xdebug'
             continue-on-error: true
     runs-on: ubuntu-20.04
