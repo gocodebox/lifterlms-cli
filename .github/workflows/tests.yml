@@ -1,0 +1,88 @@
+name: Testing
+
+on:
+  pull_request:
+  schedule:
+    # Nightly at 7pm UTC.
+    - cron:  '0 7 * * *'
+
+jobs:
+
+  behat: #----------------------------------------------------------------------
+    name: Behat - WP ${{ matrix.wp }} on PHP ${{ matrix.php }} with MySQL ${{ matrix.mysql }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '7.3'
+          - '7.4'
+          - '8.0'
+        wp:
+          - 'latest'
+        mysql:
+          - '8.0'
+    runs-on: ubuntu-20.04
+    env:
+      MYSQL_DATABASE: llms_cli
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+
+    services:
+      mysql:
+        image: mysql:${{ matrix.mysql }}
+        ports:
+          - 3306
+        # options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=wp_cli_test --entrypoint sh mysql:${{ matrix.mysql }} -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP envirnoment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '${{ matrix.php }}'
+          extensions: gd, imagick, mysql, zip
+          # coverage: none
+          tools: composer
+
+      - name: Get Composer cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Use Composer cache
+        uses: actions/cache@master
+        with:
+          path: ${{ steps['composer-cache'].outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --ignore-platform-reqs
+
+      - name: Start MySQL server
+        run: sudo systemctl start mysql
+
+      - name: Start MySQL
+        run: sudo systemctl start mysql.service
+      - name: Create MySQL database
+        run: mysql --user=$MYSQL_USER --password=$MYSQL_PASSWORD -e "CREATE DATABASE \`$MYSQL_DATABASE\` ;"
+
+      # - name: Configure DB environment
+      #   run: |
+      #     echo "MYSQL_HOST=127.0.0.1" >> $GITHUB_ENV
+      #     echo "MYSQL_TCP_PORT=${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBROOTUSER=root" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBROOTPASS=root" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBNAME=wp_cli_test" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBUSER=wp_cli_test" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBPASS=password1" >> $GITHUB_ENV
+      #     echo "WP_CLI_TEST_DBHOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
+
+      - name: Install tests
+        run: composer run tests-install
+
+      - name: Run Behat Tests
+        run: composer run tests-behat
