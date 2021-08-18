@@ -45,3 +45,6 @@ jobs:
 
       - name: Run PHPCS
         run: composer run check-cs
+
+      - name: Notify
+        uses: gocodebox/.github/.github/actions/slack-notifier@trunk
