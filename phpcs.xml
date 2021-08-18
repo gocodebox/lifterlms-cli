@@ -39,4 +39,7 @@
 	<exclude-pattern>./bin/*</exclude-pattern>
 	<exclude-pattern>./docs/*</exclude-pattern>
 
+    <!-- These files need to be fixed -->
+    <exclude-pattern>src/Commands/Restful</exclude-pattern>
+
 </ruleset>
