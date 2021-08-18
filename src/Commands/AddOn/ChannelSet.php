@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version 0.0.1
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -34,18 +34,27 @@ trait ChannelSet {
 	 *   - beta
 	 * ---
 	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Subscribe the Groups add-on to the beta channel.
+	 *     $ wp llms addon channel-set lifterlms-groups stable
+	 *
+	 *     # Subscribe to the stable channel.
+	 *     $ wp llms addon channel-set lifterlms-groups stable
+	 *
 	 * @subcommand channel-set
 	 *
 	 * @since 0.0.1
+	 * @since [version] Updated success message.
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null
 	 */
 	public function channel_set( $args ) {
 
-		$addon = $this->get_addon( $args[0], true, 'warning' );
+		$addon = $this->get_addon( $args[0], true );
 		$addon->subscribe_to_channel( $args[1] );
-		return \WP_CLI::success( sprintf( 'Subscribed to %s channel.', $args[1] ) );
+		return \WP_CLI::success( sprintf( 'Subscribed to the %s channel.', $args[1] ) );
 
 	}
 
