@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version 0.0.1
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -32,6 +32,7 @@ trait Deactivate {
 	 * : If set, all of the plugin add-ons installed on the site will be activated.
 	 *
 	 * @since 0.0.1
+	 * @since [version] Completion messages use says "deactivate(d)" in favor of "activate(d)".
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.
@@ -42,13 +43,13 @@ trait Deactivate {
 		if ( ! empty( $assoc_args['all'] ) ) {
 			$args = $this->get_available_addons( 'active', false, 'plugin' );
 			if ( empty( $args ) ) {
-				return \WP_CLI::warning( 'No add-ons to activate.' );
+				return \WP_CLI::warning( 'No add-ons to deactivate.' );
 			}
 		}
 
 		$results = $this->loop( $args, $assoc_args, 'deactivate_one' );
 		if ( ! $this->chaining ) {
-			\WP_CLI\Utils\report_batch_operation_results( 'add-on', 'activate', count( $args ), $results['successes'], $results['errors'] );
+			\WP_CLI\Utils\report_batch_operation_results( 'add-on', 'deactivate', count( $args ), $results['successes'], $results['errors'] );
 		}
 
 	}

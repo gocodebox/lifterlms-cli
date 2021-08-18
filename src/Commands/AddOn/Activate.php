@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version 0.0.1
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -56,6 +56,7 @@ trait Activate {
 	 * Ensures add-on can be activated and actually activates the add-on.
 	 *
 	 * @since 0.0.1
+	 * @since [version] Fixed unmerged placeholder in warning message when add-on is not installed.
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.
@@ -69,7 +70,7 @@ trait Activate {
 		}
 
 		if ( ! $addon->is_installed() ) {
-			return \WP_CLI::warning( sprintf( 'Add-on "%1$s" is not installed. Run %2$s to install it.', $slug, "'wp llms addon install %s'" ) );
+			return \WP_CLI::warning( sprintf( 'Add-on "%1$s" is not installed. Run \'wp llms addon install %s\' to install it.', $slug ) );
 		}
 
 		$res = $addon->activate();
