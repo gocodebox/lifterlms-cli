@@ -1,14 +1,37 @@
-LifterLMS CLI
-=============
+LLMS-CLI
+========
 
 [![GitHub Testing Workflow Status][img-gh-testing]][link-gh-testing]
 [![GitHub Coding Standards Workflow Status][img-gh-cs]][link-gh-cs]
 [![Code Climate maintainability][img-cc-maintainability]][link-cc]
 [![Code Climate test coverage][img-cc-coverage]][link-cc-coverage]
 
-WP CLI commands for [LifterLMS](https://github.com/gocodebox/lifterlms)
+---
+
+The LLMS-CLI is a collection of WP-CLI commands for [LifterLMS](https://github.com/gocodebox/lifterlms).
+
+This is a feature plugin which will be included in the LifterLMS core plugin automatically.
 
 ---
+
+## Documentation
+
+Documentation is automatically generated and imported from the [docs/](./docs) directory into the developer hub at [developer.lifterlms.com/cli/commands](https://developer.lifterlms.com/cli/commands/).
+
+
+## Installing for development
+
+To install for development either:
+
++ Download the [latest release](https://github.com/gocodebox/lifterlms-cli/releases) and upload to your WordPress site via FTP or add as new plugin.
++ Clone this repository into your `wp-content/plugins` directory.
+
+
+## Contributing
+
+Please follow the contribution guidelines put forth by the [LifterLMS core](https://github.com/gocodebox/lifterlms/blob/trunk/.github/CONTRIBUTING.md).
+
+
 
 
 [img-cc-coverage]:https://img.shields.io/codeclimate/coverage/gocodebox/lifterlms-cli?style=for-the-badge&logo=code-climate
@@ -20,6 +43,3 @@ WP CLI commands for [LifterLMS](https://github.com/gocodebox/lifterlms)
 [link-cc-coverage]: https://codeclimate.com/github/gocodebox/lifterlms-cli/coverage "Code coverage reports on Code Climate"
 [link-gh-testing]: https://github.com/gocodebox/lifterlms-cli/actions/workflows/tests.yml "Testing workflow on GitHub Actions"
 [link-gh-cs]: https://github.com/gocodebox/lifterlms-cli/actions/workflows/check-cs.yml "Coding Standards workflow on GitHub Actions"
-
----
-
