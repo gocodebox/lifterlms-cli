@@ -70,27 +70,74 @@ class Runner {
 
 	}
 
-	private static function get_command_title( $title ) {
-		return 'llms ' . str_replace( array( 'llms_', '_' ), array( '', '-' ), $title );
-	}
 
-	private static function get_command_root_desc( $title ) {
-		$title = str_replace( array( 'llms_', '_', '-', 'students' ), array( '', ' ', ' ', 'student' ), $title );
-		if ( 's' !== substr( $title, -1 ) ) {
-			$title .= 's';
+	private static function get_command_root_desc( $resource ) {
+		$resource = str_replace( array( '-', 'students', 'api' ), array( ' ', 'student', 'API' ), $resource );
+		if ( 's' !== substr( $resource, -1 ) ) {
+			$resource .= 's';
 		}
-		return sprintf( 'Manage %s.', $title );
+		return sprintf( 'Manage %s.', $resource );
 	}
 
-	/**
-	 * Register WP-CLI commands for all endpoints on a route
-	 *
-	 * @param string
-	 * @param array  $endpoints
-	 */
-	private static function register_route_commands( $rest_command, $route, $route_data, $command_args = array() ) {
+	private static function get_command_short_desc( $command, $resource ) {
 
-		$parent = self::get_command_title( $route_data['schema']['title'] );
+		$before = '';
+		$after  = '';
+
+
+		switch ( $command ) {
+			case 'create':
+				$before = 'Creates a new';
+				break;
+
+			case 'delete':
+				$before = 'Deletes an existing';
+				break;
+
+			case 'diff':
+				$before = 'Compare';
+				$resource = self::pluralize_resource( $resource );
+				$after = 'between environments';
+				break;
+
+			case 'edit':
+				$before = 'Launches system editor to edit the';
+				$after = 'content';
+				break;
+
+			case 'generate':
+				$before = 'Generates some';
+				$resource = self::pluralize_resource( $resource );
+				break;
+
+			case 'get':
+				$before = 'Gets details about a';
+				break;
+
+			case 'list':
+				$before = 'Gets a list of ';
+				$resource = self::pluralize_resource( $resource );
+				break;
+
+			case 'update':
+				$before = 'Updates an existing';
+				break;
+		}
+
+		return trim( implode( ' ', array( $before, $resource, $after ) ) ) . '.';
+	}
+
+	private static function pluralize_resource( $resource ) {
+
+		switch ( $resource ) {
+			default:
+				$resource .= 's';
+		}
+
+		return $resource;
+	}
+
+	private static function get_supported_commands( $route, $route_data ) {
 
 		$supported_commands = array();
 		foreach ( $route_data['endpoints'] as $endpoint ) {
@@ -100,7 +147,6 @@ class Runner {
 			$trimmed_route = rtrim( $route );
 			$is_singular   = $resource_id === substr( $trimmed_route, - strlen( $resource_id ) );
 
-			$command = '';
 			// List a collection
 			if ( array( 'GET' ) == $endpoint['methods']
 				&& ! $is_singular ) {
@@ -132,6 +178,43 @@ class Runner {
 			}
 		}
 
+		return $supported_commands;
+
+	}
+
+	public static function before_invoke_command() {
+
+		/**
+		 * If `--user` was passed the user will already be set, otherwise there won't be a user.
+		 *
+		 * It is "safe" to assume that someone using the CLI has admin access and we'll set the current
+		 * user to be the first admin we find in the DB that has the `manage_options` cap.
+		 */
+		if ( ! get_current_user_id() ) {
+			$user = \LLMS_Install::get_can_install_user_id();
+			if ( $user ) {
+				wp_set_current_user( $user );
+			}
+		}
+
+		if ( \WP_CLI::get_config( 'debug' ) && ! defined( 'SAVEQUERIES' ) ) {
+			define( 'SAVEQUERIES', true );
+		}
+
+	}
+
+	/**
+	 * Register WP-CLI commands for all endpoints on a route
+	 *
+	 * @param string
+	 * @param array  $endpoints
+	 */
+	private static function register_route_commands( $rest_command, $route, $route_data ) {
+
+		$resource = str_replace( array( 'llms_', '_' ), array( '', '-' ), $route_data['schema']['title'] );
+		$parent   = "llms {$resource}";
+
+		$supported_commands = self::get_supported_commands( $route, $route_data );
 		foreach ( $supported_commands as $command => $endpoint_args ) {
 
 			$synopsis = array();
@@ -210,76 +293,53 @@ class Runner {
 				'update' => 'update_item',
 			);
 
-			$before_invoke = null;
-			if ( empty( $command_args['when'] ) && \WP_CLI::get_config( 'debug' ) ) {
-				$before_invoke = function() {
-					if ( ! defined( 'SAVEQUERIES' ) ) {
-						define( 'SAVEQUERIES', true );
-					}
-				};
-			}
-
+			// Add the root command, eg: wp llms course.
 			\WP_CLI::add_command(
 				"{$parent}",
 				$rest_command,
 				array(
-					'shortdesc' => self::get_command_root_desc( $route_data['schema']['title'] ),
+					'shortdesc' => self::get_command_root_desc( $resource ),
 				)
 			);
 
+			// Register main subcommands, eg: wp llms course create, wp llms course delete, etc...
 			\WP_CLI::add_command(
 				"{$parent} {$command}",
 				array( $rest_command, $methods[ $command ] ),
 				array(
+					'shortdesc'     => self::get_command_short_desc( $command, $resource ),
 					'synopsis'      => $synopsis,
-					'when'          => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
-					'before_invoke' => $before_invoke,
+					'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 				)
 			);
 
+			// If listing is supported, add the diff command.
 			if ( 'list' === $command ) {
 				\WP_CLI::add_command(
 					"{$parent} diff",
 					array( $rest_command, 'diff_items' ),
 					array(
-						'when' => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
+						'shortdesc' => self::get_command_short_desc( 'diff', $resource ),
+						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
 			}
 
+			// If creation is supported, add the generate command.
 			if ( 'create' === $command ) {
-				// Reuse synopsis from 'create' command
-				$generate_synopsis   = array();
-				$generate_synopsis[] = array(
-					'name'        => 'count',
-					'type'        => 'assoc',
-					'description' => 'Number of items to generate.',
-					'optional'    => true,
-					'default'     => 10,
-				);
-				$generate_synopsis[] = array(
-					'name'        => 'format',
-					'type'        => 'assoc',
-					'description' => 'Render generation in specific format.',
-					'optional'    => true,
-					'default'     => 'progress',
-					'options'     => array(
-						'progress',
-						'ids',
-					),
-				);
-				// Reuse synopsis from 'create' command
-				$generate_synopsis = array_merge( $generate_synopsis, $synopsis );
 				\WP_CLI::add_command(
 					"{$parent} generate",
 					array( $rest_command, 'generate_items' ),
 					array(
-						'synopsis' => $generate_synopsis,
-						'when'     => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
+						'shortdesc' => self::get_command_short_desc( 'generate', $resource ),
+						'synopsis'  => self::get_generate_command_synopsis( $synopsis ),
+						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
 			}
 
+
+			// If updating and getting is supported, add the edit command.
 			if ( 'update' === $command && array_key_exists( 'get', $supported_commands ) ) {
 				$synopsis   = array();
 				$synopsis[] = array(
@@ -292,12 +352,40 @@ class Runner {
 					"{$parent} edit",
 					array( $rest_command, 'edit_item' ),
 					array(
-						'synopsis' => $synopsis,
-						'when'     => ! empty( $command_args['when'] ) ? $command_args['when'] : '',
+						'shortdesc' => self::get_command_short_desc( 'edit', $resource ),
+						'synopsis'  => $synopsis,
+						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
 			}
 		}
+	}
+
+	private static function get_generate_command_synopsis( $create_synopsis ) {
+
+		$generate_synopsis = array(
+			array(
+				'name'        => 'count',
+				'type'        => 'assoc',
+				'description' => 'Number of items to generate.',
+				'optional'    => true,
+				'default'     => 10,
+			),
+			array(
+				'name'        => 'format',
+				'type'        => 'assoc',
+				'description' => 'Render generation in specific format.',
+				'optional'    => true,
+				'default'     => 'progress',
+				'options'     => array(
+					'progress',
+					'ids',
+				),
+			),
+		);
+
+		return array_merge( $generate_synopsis, $create_synopsis );
+
 	}
 
 }
