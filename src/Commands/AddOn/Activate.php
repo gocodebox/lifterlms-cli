@@ -28,6 +28,20 @@ trait Activate {
 	 * [--all]
 	 * : If set, all of the LifterLMS add-ons installed on the site will be activated.
 	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Activate the LifterLMS Groups add-on.
+	 *     $ wp llms addon activate lifterlms-groups
+	 *
+	 *     # Activate an add-on without using the `lifterlms-` prefix.
+	 *     $ wp llms addon activate advanced-videos
+	 *
+	 *     # Activate multiple LifterLMS add-ons.
+	 *     $ wp llms addon activate lifterlms-groups lifterlms-assignments lifterlms-pdfs
+	 *
+	 *     # Activate all installed LifterLMS add-ons.
+	 *     $ wp llms addon activate --all
+	 *
 	 * @since 0.0.1
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
