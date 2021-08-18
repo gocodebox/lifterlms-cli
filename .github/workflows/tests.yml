@@ -118,4 +118,4 @@ jobs:
             ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:clover
 
       - name: Notify
-        uses: gocodebox/.github/.github/actions/slack-notifier
+        uses: gocodebox/.github/.github/actions/slack-notifier@trunk
