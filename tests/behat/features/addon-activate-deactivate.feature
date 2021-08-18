@@ -1,3 +1,4 @@
+@api-integration
 Feature: Add-on activate and deactivate commands
 
 	Background:
