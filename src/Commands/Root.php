@@ -63,7 +63,7 @@ class Root extends AbstractCommand {
 		return \WP_CLI::error(
 			sprintf(
 				"The requested add-on is not installed. Run 'wp llms addon install %s.' to install it.",
-				$args[0],
+				$args[0]
 			)
 		);
 

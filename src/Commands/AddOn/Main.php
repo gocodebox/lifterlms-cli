@@ -101,8 +101,8 @@ class Main extends AbstractCommand {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @param array  assoc_args    Associative array of command options.
-	 * @param string                                                    $filter_field The optional name of the field to filter results by.
+	 * @param array  $assoc_args   Associative array of command options.
+	 * @param string $filter_field The optional name of the field to filter results by.
 	 * @return array[] Array of add-on items.
 	 */
 	private function get_filtered_items( $assoc_args, $filter_field = '' ) {

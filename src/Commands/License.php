@@ -51,6 +51,7 @@ class License extends AbstractCommand {
 	 * : The license key to be deactivated.
 	 *
 	 * @since 0.0.1
+	 * @since [version] Use a strict comparison when checking response status.
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null
@@ -63,7 +64,7 @@ class License extends AbstractCommand {
 		} elseif ( ! empty( $res['data']['deactivations'] ) ) {
 			\LLMS_Helper_Keys::remove_license_key( $args[0] );
 			return \WP_CLI::success( sprintf( 'License key "%s" has been deactivated from this site.', $args[0] ) );
-		} elseif ( ! empty( $res['data']['status'] ) && 200 == $res['data']['status'] ) {
+		} elseif ( ! empty( $res['data']['status'] ) && 200 === absint( $res['data']['status'] ) ) {
 			return \WP_CLI::error( sprintf( 'License key "%s" was not active on this site.', $args[0] ) );
 		}
 

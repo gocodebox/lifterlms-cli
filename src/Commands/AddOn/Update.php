@@ -135,6 +135,14 @@ trait Update {
 	}
 
 
+	/**
+	 * Update a single add-on
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param array $item Associative array of add-on data.
+	 * @return boolean Returns `false` when an error is encountered and `true` otherwise.
+	 */
 	private function update_one( &$item ) {
 
 		$addon = $this->get_addon( $item['name'] );

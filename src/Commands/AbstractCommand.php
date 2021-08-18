@@ -32,9 +32,9 @@ abstract class AbstractCommand extends \WP_CLI_Command {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @param string $command      Method name of the command to chain.
-	 * @param array  $assoc_args   Associative array of command options.
-	 * @param string $filter_field The optional name of the field to filter results by.
+	 * @param string $command    Method name of the command to chain.
+	 * @param array  $args       Indexed array of positional command arguments to pass to the chained command.
+	 * @param array  $assoc_args Associative array of command options to pass to the chained command.
 	 * @return void
 	 */
 	protected function chain_command( $command, $args = array(), $assoc_args = array() ) {
