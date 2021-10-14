@@ -39,7 +39,7 @@
     ]
   },
   "require-dev": {
-    "lifterlms/lifterlms-tests": "dev-trunk",
+    "lifterlms/lifterlms-tests": "^3.1.0",
     "lifterlms/lifterlms-cs": "dev-trunk"
   },
   "autoload": {
@@ -60,12 +60,8 @@
 
     "tests-install": "\"vendor/bin/llms-tests\" install-cli ${TESTS_DB_NAME:-llms_cli_tests} ${TESTS_DB_USER:-root} \"${TESTS_DB_PASS-password}\" ${TESTS_DB_HOST:-127.0.0.1}",
 
-    "tests-behat": "vendor/bin/behat --format progress",
-    "tests": [
-      "@tests-behat"
-    ],
+    "tests": "\"vendor/bin/behat\" --format progress",
 
-    "install-php8": "composer install --ignore-platform-reqs",
     "tests-run": "@tests"
   }
 }

@@ -11,3 +11,5 @@ vendor/
 /tmp/
 
 .behatenv
+
+composer.lock
