@@ -1,8 +1,0 @@
-default:
-  suites:
-    default:
-      paths:
-        - tests/behat/features
-      contexts:
-        - LifterLMS\Tests\Behat\FeatureContext
-
