@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version [version]
+ * @version 0.0.2
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -38,7 +38,7 @@ class Root extends AbstractCommand {
 	 *     wp llms version lifterlms-assignments
 	 *
 	 * @since 0.0.1
-	 * @since [version] Remove `--db` option. This will be implemented in a separate command.
+	 * @since 0.0.2 Remove `--db` option. This will be implemented in a separate command.
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.

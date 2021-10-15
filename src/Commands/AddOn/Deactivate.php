@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version [version]
+ * @version 0.0.2
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -49,7 +49,7 @@ trait Deactivate {
 	 *     $ wp llms addon deactivate lifterlms-groups --uninstall
 	 *
 	 * @since 0.0.1
-	 * @since [version] Completion messages use says "deactivate(d)" in favor of "activate(d)".
+	 * @since 0.0.2 Completion messages use says "deactivate(d)" in favor of "activate(d)".
 	 *
 	 * @param array $args       Indexed array of positional command arguments.
 	 * @param array $assoc_args Associative array of command options.

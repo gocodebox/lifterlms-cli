@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version [version]
+ * @version 0.0.2
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -70,7 +70,7 @@ trait Activate {
 	 * Ensures add-on can be activated and actually activates the add-on.
 	 *
 	 * @since 0.0.1
-	 * @since [version] Fixed unmerged placeholder in warning message when add-on is not installed.
+	 * @since 0.0.2 Fixed unmerged placeholder in warning message when add-on is not installed.
 	 *
 	 * @param string      $slug       Add-on slug.
 	 * @param LLMS_Add_On $addon      Add-on object.

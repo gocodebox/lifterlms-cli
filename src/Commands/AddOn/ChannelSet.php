@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version [version]
+ * @version 0.0.2
  */
 
 namespace LifterLMS\CLI\Commands\AddOn;
@@ -45,7 +45,7 @@ trait ChannelSet {
 	 * @subcommand channel-set
 	 *
 	 * @since 0.0.1
-	 * @since [version] Updated success message.
+	 * @since 0.0.2 Updated success message.
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null

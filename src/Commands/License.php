@@ -51,7 +51,7 @@ class License extends AbstractCommand {
 	 * : The license key to be deactivated.
 	 *
 	 * @since 0.0.1
-	 * @since [version] Use a strict comparison when checking response status.
+	 * @since 0.0.2 Use a strict comparison when checking response status.
 	 *
 	 * @param array $args Indexed array of positional command arguments.
 	 * @return null
