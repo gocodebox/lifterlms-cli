@@ -1,6 +1,6 @@
 # wp llms membership generate
 
-Generate some items.
+Generates some memberships.
 
 ### OPTIONS
 

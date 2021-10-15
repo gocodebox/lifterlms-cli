@@ -1,6 +1,6 @@
 # wp llms students-enrollments update
 
-Update an existing item.
+Updates an existing students-enrollments.
 
 ### OPTIONS
 

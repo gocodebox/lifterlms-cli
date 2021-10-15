@@ -1,6 +1,6 @@
 # wp llms students-enrollments diff
 
-Compare items between environments.
+Compare students-enrollmentss between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

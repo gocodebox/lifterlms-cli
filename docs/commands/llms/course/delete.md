@@ -1,6 +1,6 @@
 # wp llms course delete
 
-Delete an existing item.
+Deletes an existing course.
 
 ### OPTIONS
 

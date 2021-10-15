@@ -1,6 +1,6 @@
 # wp llms course generate
 
-Generate some items.
+Generates some courses.
 
 ### OPTIONS
 

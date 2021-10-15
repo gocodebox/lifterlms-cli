@@ -1,6 +1,6 @@
 # wp llms instructor update
 
-Update an existing item.
+Updates an existing instructor.
 
 ### OPTIONS
 

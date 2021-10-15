@@ -13,6 +13,23 @@ Deactivate one or more plugin add-ons.
 [\--all]
 : If set, all of the plugin add-ons installed on the site will be activated.
 
+### EXAMPLES
+
+    # Deactivate the LifterLMS Groups add-on.
+    $ wp llms addon deactivate lifterlms-groups
+
+    # Deactivate an add-on without using the `lifterlms-` prefix.
+    $ wp llms addon deactivate advanced-videos
+
+    # Deactivate multiple LifterLMS add-ons.
+    $ wp llms addon deactivate lifterlms-groups lifterlms-assignments lifterlms-pdfs
+
+    # Deactivate all installed LifterLMS add-ons.
+    $ wp llms addon deactivate --all
+
+    # Deactivate and uninstall the LifterLMS Groups add-on.
+    $ wp llms addon deactivate lifterlms-groups --uninstall
+
 ### GLOBAL PARAMETERS
 
 These [global parameters](https://make.wordpress.org/cli/handbook/config/) have the same behavior across all commands and affect how WP-CLI interacts with WordPress.

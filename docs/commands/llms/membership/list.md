@@ -1,6 +1,6 @@
 # wp llms membership list
 
-List all items.
+Gets a list of  memberships.
 
 ### OPTIONS
 

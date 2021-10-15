@@ -1,6 +1,6 @@
 # wp llms section list
 
-List all items.
+Gets a list of  sections.
 
 ### OPTIONS
 

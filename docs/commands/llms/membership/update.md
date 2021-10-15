@@ -1,6 +1,6 @@
 # wp llms membership update
 
-Update an existing item.
+Updates an existing membership.
 
 ### OPTIONS
 

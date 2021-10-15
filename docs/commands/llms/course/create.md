@@ -1,6 +1,6 @@
 # wp llms course create
 
-Create a new item.
+Creates a new course.
 
 ### OPTIONS
 

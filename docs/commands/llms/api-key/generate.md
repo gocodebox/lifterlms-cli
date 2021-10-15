@@ -1,6 +1,6 @@
 # wp llms api-key generate
 
-Generate some items.
+Generates some api-keys.
 
 ### OPTIONS
 

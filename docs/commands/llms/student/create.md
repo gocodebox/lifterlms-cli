@@ -1,6 +1,6 @@
 # wp llms student create
 
-Create a new item.
+Creates a new student.
 
 ### OPTIONS
 

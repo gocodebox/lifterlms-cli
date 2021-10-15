@@ -1,6 +1,6 @@
 # wp llms section diff
 
-Compare items between environments.
+Compare sections between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

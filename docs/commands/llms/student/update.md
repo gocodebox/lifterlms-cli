@@ -1,6 +1,6 @@
 # wp llms student update
 
-Update an existing item.
+Updates an existing student.
 
 ### OPTIONS
 

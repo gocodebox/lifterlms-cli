@@ -1,6 +1,6 @@
 # wp llms section delete
 
-Delete an existing item.
+Deletes an existing section.
 
 ### OPTIONS
 

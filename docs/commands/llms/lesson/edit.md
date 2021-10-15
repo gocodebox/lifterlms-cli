@@ -1,6 +1,6 @@
 # wp llms lesson edit
 
-Open an existing item in the editor
+Launches system editor to edit the lesson content.
 
 ### OPTIONS
 

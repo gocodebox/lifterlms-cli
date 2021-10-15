@@ -1,6 +1,6 @@
 # wp llms api-key edit
 
-Open an existing item in the editor
+Launches system editor to edit the api-key content.
 
 ### OPTIONS
 

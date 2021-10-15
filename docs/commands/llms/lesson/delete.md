@@ -1,6 +1,6 @@
 # wp llms lesson delete
 
-Delete an existing item.
+Deletes an existing lesson.
 
 ### OPTIONS
 

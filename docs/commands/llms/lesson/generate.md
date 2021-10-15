@@ -1,6 +1,6 @@
 # wp llms lesson generate
 
-Generate some items.
+Generates some lessons.
 
 ### OPTIONS
 

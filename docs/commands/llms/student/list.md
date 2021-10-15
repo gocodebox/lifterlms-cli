@@ -1,6 +1,6 @@
 # wp llms student list
 
-List all items.
+Gets a list of  students.
 
 ### OPTIONS
 

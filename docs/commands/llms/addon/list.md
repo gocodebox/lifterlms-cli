@@ -48,31 +48,31 @@ These fields are optionally available:
 ### EXAMPLES
 
     # List all add-ons.
-    wp llms addon list
+    $ wp llms addon list
 
     # List all add-ons in JSON format.
-    wp llms addon list --format=json
+    $ wp llms addon list --format=json
 
     # List all add-ons by name only.
-    wp llms addon list --field=name
+    $ wp llms addon list --field=name
 
     # List all add-ons with all available fields.
-    wp llms addon list --fields=all
+    $ wp llms addon list --fields=all
 
     # List all add-ons with a custom fields list.
-    wp llms addon list --fields=title,status,version
+    $ wp llms addon list --fields=title,status,version
 
     # List currently activated add-ons.
-    wp llms addon list --status=active
+    $ wp llms addon list --status=active
 
     # List all theme add-ons.
-    wp llms addon list --type=theme
+    $ wp llms addon list --type=theme
 
     # List all add-ons with available updates.
-    wp llms addon list --update=available
+    $ wp llms addon list --update=available
 
     # List all add-ons licensed on the site.
-    wp llms addon list --license=active
+    $ wp llms addon list --license=active
 
 ### GLOBAL PARAMETERS
 

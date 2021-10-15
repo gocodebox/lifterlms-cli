@@ -1,6 +1,6 @@
 # wp llms students-progress delete
 
-Delete an existing item.
+Deletes an existing students-progress.
 
 ### OPTIONS
 

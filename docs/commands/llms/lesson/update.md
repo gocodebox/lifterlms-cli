@@ -1,6 +1,6 @@
 # wp llms lesson update
 
-Update an existing item.
+Updates an existing lesson.
 
 ### OPTIONS
 

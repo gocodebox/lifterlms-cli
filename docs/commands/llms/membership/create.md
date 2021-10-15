@@ -1,6 +1,6 @@
 # wp llms membership create
 
-Create a new item.
+Creates a new membership.
 
 ### OPTIONS
 

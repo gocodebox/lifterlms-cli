@@ -1,6 +1,6 @@
 # wp llms membership delete
 
-Delete an existing item.
+Deletes an existing membership.
 
 ### OPTIONS
 

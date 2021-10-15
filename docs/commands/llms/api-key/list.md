@@ -1,6 +1,6 @@
 # wp llms api-key list
 
-List all items.
+Gets a list of  api-keys.
 
 ### OPTIONS
 

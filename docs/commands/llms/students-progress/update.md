@@ -1,6 +1,6 @@
 # wp llms students-progress update
 
-Update an existing item.
+Updates an existing students-progress.
 
 ### OPTIONS
 

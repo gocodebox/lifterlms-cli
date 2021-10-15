@@ -1,6 +1,6 @@
 # wp llms api-key
 
-Manage api keys.
+Manage API keys.
 
 
 

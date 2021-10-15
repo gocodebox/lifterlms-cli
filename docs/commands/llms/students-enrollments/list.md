@@ -1,6 +1,6 @@
 # wp llms students-enrollments list
 
-List all items.
+Gets a list of  students-enrollmentss.
 
 ### OPTIONS
 

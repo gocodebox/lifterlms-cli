@@ -1,6 +1,6 @@
 # wp llms section create
 
-Create a new item.
+Creates a new section.
 
 ### OPTIONS
 

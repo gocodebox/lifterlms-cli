@@ -1,6 +1,6 @@
 # wp llms instructor list
 
-List all items.
+Gets a list of  instructors.
 
 ### OPTIONS
 

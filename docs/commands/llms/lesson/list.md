@@ -1,6 +1,6 @@
 # wp llms lesson list
 
-List all items.
+Gets a list of  lessons.
 
 ### OPTIONS
 

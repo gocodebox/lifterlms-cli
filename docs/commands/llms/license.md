@@ -1,6 +1,6 @@
 # wp llms license
 
-Manage LifterLMS License Keys
+Manage LifterLMS License Keys.
 
 
 

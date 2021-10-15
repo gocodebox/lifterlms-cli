@@ -1,6 +1,6 @@
 # wp llms api-key get
 
-Get a single item.
+Gets details about a api-key.
 
 ### OPTIONS
 

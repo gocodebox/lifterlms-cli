@@ -1,6 +1,6 @@
 # wp llms section edit
 
-Open an existing item in the editor
+Launches system editor to edit the section content.
 
 ### OPTIONS
 

@@ -1,6 +1,6 @@
 # wp llms students-enrollments delete
 
-Delete an existing item.
+Deletes an existing students-enrollments.
 
 ### OPTIONS
 

@@ -1,6 +1,6 @@
 # wp llms instructor generate
 
-Generate some items.
+Generates some instructors.
 
 ### OPTIONS
 

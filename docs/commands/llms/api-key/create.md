@@ -1,6 +1,6 @@
 # wp llms api-key create
 
-Create a new item.
+Creates a new api-key.
 
 ### OPTIONS
 

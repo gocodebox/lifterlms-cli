@@ -1,6 +1,6 @@
 # wp llms access-plan get
 
-Get a single item.
+Gets details about a access-plan.
 
 ### OPTIONS
 

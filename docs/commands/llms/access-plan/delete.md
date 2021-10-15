@@ -1,6 +1,6 @@
 # wp llms access-plan delete
 
-Delete an existing item.
+Deletes an existing access-plan.
 
 ### OPTIONS
 

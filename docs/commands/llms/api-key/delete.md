@@ -1,6 +1,6 @@
 # wp llms api-key delete
 
-Delete an existing item.
+Deletes an existing api-key.
 
 ### OPTIONS
 

@@ -1,6 +1,6 @@
 # wp llms instructor diff
 
-Compare items between environments.
+Compare instructors between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

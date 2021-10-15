@@ -5,11 +5,6 @@ Display the version of LifterLMS or the specified LifterLMS add-on.
 [&lt;slug&gt;]
 : The slug of the LifterLMS plugin or theme. Default: lifterlms.
 
-### OPTIONS
-
-[\--db]
-: Display the database version.
-
 ### EXAMPLES
 
     # Show the LifterLMS core plugin version

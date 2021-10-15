@@ -1,6 +1,6 @@
 # wp llms access-plan update
 
-Update an existing item.
+Updates an existing access-plan.
 
 ### OPTIONS
 

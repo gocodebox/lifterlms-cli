@@ -1,6 +1,6 @@
 # wp llms course update
 
-Update an existing item.
+Updates an existing course.
 
 ### OPTIONS
 

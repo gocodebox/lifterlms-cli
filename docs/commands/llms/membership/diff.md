@@ -1,6 +1,6 @@
 # wp llms membership diff
 
-Compare items between environments.
+Compare memberships between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

@@ -1,6 +1,6 @@
 # wp llms student get
 
-Get a single item.
+Gets details about a student.
 
 ### OPTIONS
 

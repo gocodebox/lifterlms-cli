@@ -1,6 +1,6 @@
 # wp llms api-key update
 
-Update an existing item.
+Updates an existing api-key.
 
 ### OPTIONS
 

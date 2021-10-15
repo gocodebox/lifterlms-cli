@@ -1,6 +1,6 @@
 # wp llms section generate
 
-Generate some items.
+Generates some sections.
 
 ### OPTIONS
 

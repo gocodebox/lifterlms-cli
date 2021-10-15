@@ -1,6 +1,6 @@
 # wp llms students-enrollments get
 
-Get a single item.
+Gets details about a students-enrollments.
 
 ### OPTIONS
 

@@ -1,6 +1,6 @@
 # wp llms instructor delete
 
-Delete an existing item.
+Deletes an existing instructor.
 
 ### OPTIONS
 

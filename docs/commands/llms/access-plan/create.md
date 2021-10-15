@@ -1,6 +1,6 @@
 # wp llms access-plan create
 
-Create a new item.
+Creates a new access-plan.
 
 ### OPTIONS
 

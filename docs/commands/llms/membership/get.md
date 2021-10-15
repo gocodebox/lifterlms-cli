@@ -1,6 +1,6 @@
 # wp llms membership get
 
-Get a single item.
+Gets details about a membership.
 
 ### OPTIONS
 

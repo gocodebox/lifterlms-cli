@@ -1,6 +1,6 @@
 # wp llms student generate
 
-Generate some items.
+Generates some students.
 
 ### OPTIONS
 

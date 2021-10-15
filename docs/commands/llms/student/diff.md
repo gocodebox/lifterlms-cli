@@ -1,6 +1,6 @@
 # wp llms student diff
 
-Compare items between environments.
+Compare students between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

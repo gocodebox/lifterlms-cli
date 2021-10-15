@@ -1,6 +1,6 @@
 # wp llms lesson create
 
-Create a new item.
+Creates a new lesson.
 
 ### OPTIONS
 

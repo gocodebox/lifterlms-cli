@@ -1,6 +1,6 @@
 # wp llms access-plan diff
 
-Compare items between environments.
+Compare access-plans between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

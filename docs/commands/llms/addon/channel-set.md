@@ -16,6 +16,14 @@ options:
   - beta
 \---
 
+### EXAMPLES
+
+    # Subscribe the Groups add-on to the beta channel.
+    $ wp llms addon channel-set lifterlms-groups stable
+
+    # Subscribe to the stable channel.
+    $ wp llms addon channel-set lifterlms-groups stable
+
 ### GLOBAL PARAMETERS
 
 These [global parameters](https://make.wordpress.org/cli/handbook/config/) have the same behavior across all commands and affect how WP-CLI interacts with WordPress.

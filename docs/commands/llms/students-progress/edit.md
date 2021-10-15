@@ -1,6 +1,6 @@
 # wp llms students-progress edit
 
-Open an existing item in the editor
+Launches system editor to edit the students-progress content.
 
 ### OPTIONS
 

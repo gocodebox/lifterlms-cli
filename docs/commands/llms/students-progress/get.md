@@ -1,6 +1,6 @@
 # wp llms students-progress get
 
-Get a single item.
+Gets details about a students-progress.
 
 ### OPTIONS
 

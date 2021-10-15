@@ -1,6 +1,6 @@
 # wp llms access-plan generate
 
-Generate some items.
+Generates some access-plans.
 
 ### OPTIONS
 

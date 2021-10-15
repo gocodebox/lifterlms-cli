@@ -1,6 +1,6 @@
 # wp llms course list
 
-List all items.
+Gets a list of  courses.
 
 ### OPTIONS
 

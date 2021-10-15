@@ -1,6 +1,6 @@
 # wp llms section get
 
-Get a single item.
+Gets details about a section.
 
 ### OPTIONS
 

@@ -1,6 +1,6 @@
 # wp llms access-plan list
 
-List all items.
+Gets a list of  access-plans.
 
 ### OPTIONS
 

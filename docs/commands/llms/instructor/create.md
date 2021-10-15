@@ -1,6 +1,6 @@
 # wp llms instructor create
 
-Create a new item.
+Creates a new instructor.
 
 ### OPTIONS
 

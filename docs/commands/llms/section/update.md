@@ -1,6 +1,6 @@
 # wp llms section update
 
-Update an existing item.
+Updates an existing section.
 
 ### OPTIONS
 

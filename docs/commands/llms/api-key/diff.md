@@ -1,6 +1,6 @@
 # wp llms api-key diff
 
-Compare items between environments.
+Compare api-keys between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.

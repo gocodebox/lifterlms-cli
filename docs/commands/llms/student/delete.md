@@ -1,6 +1,6 @@
 # wp llms student delete
 
-Delete an existing item.
+Deletes an existing student.
 
 ### OPTIONS
 

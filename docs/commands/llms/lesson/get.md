@@ -1,6 +1,6 @@
 # wp llms lesson get
 
-Get a single item.
+Gets details about a lesson.
 
 ### OPTIONS
 

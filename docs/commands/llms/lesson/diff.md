@@ -1,6 +1,6 @@
 # wp llms lesson diff
 
-Compare items between environments.
+Compare lessons between environments.
 
 &lt;alias&gt;
 : Alias for the WordPress site to compare to.
