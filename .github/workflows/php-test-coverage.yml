@@ -65,4 +65,11 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: composer run tests -- --coverage-clover clover.xml
+          coverageCommand: |
+            composer list | grep -q '^  tests-with-coverage'
+            COMMAND_EXISTS=$?
+            if [ $COMMAND_EXISTS -eq 1 ]; then
+              composer run tests-with-coverage
+            else
+              composer run tests -- --coverage-clover clover.xml
+            fi
