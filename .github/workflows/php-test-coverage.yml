@@ -1,14 +1,3 @@
-###
-#
-# This workflow file is deployed into this repository via the "Sync Organization Files" workflow
-#
-# Direct edits to this file are at risk of being overwritten by the next sync. All edits should be made
-# to the source file.
-#
-# @see Sync workflow {@link https://github.com/gocodebox/.github/actions/workflows/workflow-sync.yml}
-# @see Workflow template {@link https://github.com/gocodebox/.github/blob/trunk/.github/workflow-templates/php-test-coverage.yml}
-#
-###
 name: PHP Code Coverage Report
 
 on:
@@ -60,16 +49,13 @@ jobs:
           env-file: ".github/.env.php-test-coverage"
           secrets: ${{ toJSON( secrets ) }}
 
-      - name: Run Tests with Coverage & Upload Coverage Report
+      - name: Run Tests
+        run: composer run tests
+
+      - name: Upload Test Coverage Reports
         uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: |
-            composer list | grep -q '^  tests-with-coverage'
-            COMMAND_EXISTS=$?
-            if [ $COMMAND_EXISTS -eq 0 ]; then
-              composer run tests-with-coverage
-            else
-              composer run tests -- --coverage-clover clover.xml
-            fi
+          coverageLocations: |
+            ${{github.workspace}}/tmp/coverage/clover-behat/*.xml:clover
