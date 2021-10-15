@@ -12,7 +12,6 @@
   "config": {
     "process-timeout": 1800
   },
-  "minimum-stability": "dev",
   "require": {
     "php": ">=7.3"
   },
