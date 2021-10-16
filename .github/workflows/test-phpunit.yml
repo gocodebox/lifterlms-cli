@@ -49,7 +49,7 @@ jobs:
 
     needs: set-matrix
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allow-failure }}
+    continue-on-error: ${{ matrix.allow-failure || false }}
 
     strategy:
       fail-fast: false
