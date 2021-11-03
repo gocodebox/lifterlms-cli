@@ -2,6 +2,8 @@
 
 Activate a license key.
 
+### OPTIONS
+
 [&lt;key&gt;]
 : The license key to be activated.
 

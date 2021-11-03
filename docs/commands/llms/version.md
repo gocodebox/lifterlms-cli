@@ -2,6 +2,8 @@
 
 Display the version of LifterLMS or the specified LifterLMS add-on.
 
+### OPTIONS
+
 [&lt;slug&gt;]
 : The slug of the LifterLMS plugin or theme. Default: lifterlms.
 

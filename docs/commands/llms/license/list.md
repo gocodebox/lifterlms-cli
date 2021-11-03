@@ -2,6 +2,8 @@
 
 List activated license keys.
 
+### OPTIONS
+
 [&lt;key&gt;]
 : The license key to be deactivated.
 
