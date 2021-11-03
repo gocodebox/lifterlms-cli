@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version [version]
+ * @version 0.0.3
  */
 
 namespace LifterLMS\CLI\Commands;

@@ -1,6 +1,13 @@
 LifterLMS CLI Changelog
 =======================
 
+v0.0.3 - 2021-11-03
+-------------------
+
++ Improved help documentation for several commands.
++ Added a warning to the root command's help documentation denoting that the LLMS-CLI is in open public beta and its functionality is subject to change.
+
+
 v0.0.2 - 2021-10-15
 -------------------
 
