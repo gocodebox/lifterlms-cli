@@ -13,12 +13,14 @@ namespace LifterLMS\CLI\Commands;
 /**
  * Manage LifterLMS.
  *
- * @since 0.0.1
+ * @since [version]
  */
 class Root extends AbstractCommand {
 
 	/**
 	 * Display the version of LifterLMS or the specified LifterLMS add-on.
+	 *
+	 * ## OPTIONS
 	 *
 	 * [<slug>]
 	 * : The slug of the LifterLMS plugin or theme. Default: lifterlms.

@@ -5,7 +5,7 @@
  * @package LifterLMS/CLI
  *
  * @since 0.0.1
- * @version 0.0.1
+ * @version [version]
  */
 
 namespace LifterLMS\CLI\Commands;
@@ -21,6 +21,8 @@ class License extends AbstractCommand {
 
 	/**
 	 * Activate a license key.
+	 *
+	 * ## OPTIONS
 	 *
 	 * [<key>]
 	 * : The license key to be activated.
@@ -46,6 +48,8 @@ class License extends AbstractCommand {
 
 	/**
 	 * Deactivate a license key.
+	 *
+	 * ## OPTIONS
 	 *
 	 * [<key>]
 	 * : The license key to be deactivated.
@@ -74,6 +78,8 @@ class License extends AbstractCommand {
 
 	/**
 	 * List activated license keys.
+	 *
+	 * ## OPTIONS
 	 *
 	 * [<key>]
 	 * : The license key to be deactivated.
