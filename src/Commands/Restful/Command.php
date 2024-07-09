@@ -79,7 +79,7 @@ class Command {
 			if ( 'progress' === $format ) {
 				$notify->tick();
 			} elseif ( 'ids' === $format ) {
-				echo $body['id'];
+				echo esc_html( $body['id'] );
 				if ( $i < $count - 1 ) {
 					echo ' ';
 				}
