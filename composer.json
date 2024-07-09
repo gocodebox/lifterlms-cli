@@ -56,6 +56,7 @@
     "check-cs": "\"vendor/bin/phpcs\" --colors",
     "check-cs-errors": "\"vendor/bin/phpcs\" --colors --error-severity=1 --warning-severity=6",
     "config-cs": [
+      "\"vendor/bin/phpcs\" --config-set installed_paths ../../../vendor/wp-coding-standards/wpcs,../../../vendor/wp-cli/wp-cli-tests/WP_CLI_CS,../../../vendor/lifterlms/lifterlms-cs,../../../vendor/phpcompatibility/php-compatibility,../../../vendor/phpcompatibility/phpcompatibility-paragonie,../../../vendor/phpcompatibility/phpcompatibility-wp",
       "\"vendor/bin/phpcs\" --config-set default_standard 'LifterLMS Core'"
     ],
     "fix-cs": "\"vendor/bin/phpcbf\"",
