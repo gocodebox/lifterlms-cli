@@ -9,6 +9,10 @@
   "keywords": [
     "lifterlms"
   ],
+  "devDependencies": {
+    "@lifterlms/dev": "^0.2.2",
+    "@lifterlms/scripts": "^4.0.1"
+  },
   "author": "Team LifterLMS <team@lifterlms.com>",
   "license": "GPL-3.0",
   "bugs": {
