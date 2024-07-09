@@ -1,6 +1,6 @@
 {
   "name": "lifterlms-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "WP CLI commands for the LifterLMS plugin and add-ons.",
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/gocodebox/lifterlms-cli/issues"
   },
-  "homepage": "https://github.com/gocodebox/lifterlms-cli#readme"
+  "homepage": "https://github.com/gocodebox/lifterlms-cli#readme",
+  "scripts": {
+    "build": "",
+    "dev": "llms-dev"
+  }
 }

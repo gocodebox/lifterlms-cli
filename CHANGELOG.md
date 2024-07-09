@@ -1,6 +1,14 @@
 LifterLMS CLI Changelog
 =======================
 
+v0.0.4 - 2024-07-09
+-------------------
+
+##### Security Fixes
+
++ Adds additional security checks and escaping.
+
+
 v0.0.3 - 2021-11-03
 -------------------
 
