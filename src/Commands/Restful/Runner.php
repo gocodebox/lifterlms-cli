@@ -143,7 +143,7 @@ class Runner {
 		foreach ( $route_data['endpoints'] as $endpoint ) {
 
 			$parsed_args   = preg_match_all( '#\([^\)]+\)#', $route, $matches );
-			$resource_id   = ! empty( $matches[0] ) ? array_pop( $matches[0] ) : null;
+			$resource_id   = ! empty( $matches[0] ) ? array_pop( $matches[0] ) : '';
 			$trimmed_route = rtrim( $route );
 			$is_singular   = $resource_id === substr( $trimmed_route, - strlen( $resource_id ) );
 
