@@ -1,6 +1,14 @@
 LifterLMS CLI Changelog
 =======================
 
+v0.0.5 - 2025-01-21
+-------------------
+
+##### Bug Fixes
+
++ Fixing null strlen error in PHP 8.3. Thanks [@jv-mtrz](https://github.com/jv-mtrz)! [#13](https://github.com/gocodebox/lifterlms-cli/issues/13)
+
+
 v0.0.4 - 2024-07-09
 -------------------
 

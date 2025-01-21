@@ -10,7 +10,7 @@
  * Plugin Name: LifterLMS CLI
  * Plugin URI: https://lifterlms.com/
  * Description: WP CLI feature plugin for the LifterLMS Core.
- * Version: 0.0.4
+ * Version: 0.0.5
  * Author: LifterLMS
  * Author URI: https://lifterlms.com/
  * Text Domain: lifterlms
