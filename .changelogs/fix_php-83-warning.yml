@@ -1,0 +1,7 @@
+significance: patch
+type: fixed
+links:
+  - "#13"
+attributions:
+  - "@jv-mtrz"
+entry: Fixing null strlen error in PHP 8.3.

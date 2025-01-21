@@ -145,7 +145,7 @@ class Runner {
 			$parsed_args   = preg_match_all( '#\([^\)]+\)#', $route, $matches );
 			$resource_id   = ! empty( $matches[0] ) ? array_pop( $matches[0] ) : null;
 			$trimmed_route = rtrim( $route );
-			$is_singular   = $resource_id === substr( $trimmed_route, - strlen( $resource_id ) );
+			$is_singular   = $resource_id === substr( $trimmed_route, - strlen( $resource_id ?? '' ) );
 
 			// List a collection
 			if ( array( 'GET' ) == $endpoint['methods']
