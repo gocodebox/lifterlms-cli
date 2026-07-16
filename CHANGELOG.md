@@ -1,20 +1,6 @@
 LifterLMS CLI Changelog
 =======================
 
-v0.0.6 - 2026-03-30
--------------------
-
-##### New Features
-
-+ Added `wp llms course content <id>` command to retrieve course structure (sections and lessons) in a single call.
-+ Added `wp llms course enrollments <id>` command to list students enrolled in a specific course.
-+ Added AI agent usage guide (`docs/ai-agents.md`) with patterns for Claude Code, Cursor, Codex, and similar tools.
-
-##### Updates
-
-+ Rewrote README with installation guide, quick start examples, command reference, output format documentation, and AI agent usage section.
-+ Updated minimum PHP version to 7.4 (7.3 reached EOL November 2021).
-
 
 v0.0.5 - 2025-01-21
 -------------------
