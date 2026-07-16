@@ -1,0 +1,3 @@
+significance: patch
+type: fixed
+entry: Skip sub-resources routes in discovery, fix bug in list_items/get_item.

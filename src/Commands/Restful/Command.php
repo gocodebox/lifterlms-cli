@@ -101,12 +101,10 @@ class Command {
 		$id                    = isset( $body['previous'] ) ? $body['previous']['id'] : $body['id'];
 		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'porcelain' ) ) {
 			\WP_CLI::line( $id );
-		} else {
-			if ( empty( $assoc_args['force'] ) ) {
+		} elseif ( empty( $assoc_args['force'] ) ) {
 				\WP_CLI::success( "Trashed {$this->name} {$id}." );
-			} else {
-				\WP_CLI::success( "Deleted {$this->name} {$id}." );
-			}
+		} else {
+			\WP_CLI::success( "Deleted {$this->name} {$id}." );
 		}
 	}
 
@@ -119,7 +117,7 @@ class Command {
 		list( $status, $body, $headers ) = $this->do_request( 'GET', $this->get_filled_route( $args ), $assoc_args );
 
 		if ( ! empty( $assoc_args['fields'] ) ) {
-			$body = self::limit_item_to_fields( $body, $fields );
+			$body = self::limit_item_to_fields( $body, $assoc_args['fields'] );
 		}
 
 		if ( 'headers' === $assoc_args['format'] ) {
@@ -161,7 +159,7 @@ class Command {
 
 		if ( ! empty( $assoc_args['fields'] ) ) {
 			foreach ( $items as $key => $item ) {
-				$items[ $key ] = self::limit_item_to_fields( $item, $fields );
+				$items[ $key ] = self::limit_item_to_fields( $item, $assoc_args['fields'] );
 			}
 		}
 
@@ -233,7 +231,7 @@ class Command {
 
 		if ( ! is_null( $resource ) ) {
 			$field    = is_numeric( $resource ) ? 'id' : 'slug';
-			$callback = function( $value ) use ( $field, $resource ) {
+			$callback = function ( $value ) use ( $field, $resource ) {
 				if ( isset( $value[ $field ] ) && $resource == $value[ $field ] ) {
 					return true;
 				}
@@ -381,7 +379,7 @@ class Command {
 				}
 				usort(
 					$performed_queries,
-					function( $a, $b ) {
+					function ( $a, $b ) {
 						if ( $a[1] === $b[1] ) {
 							return 0;
 						}
@@ -398,7 +396,7 @@ class Command {
 				if ( $performed_queries && 'rest' === \WP_CLI::get_config( 'debug' ) ) {
 					$slow_query_message .= '. Ordered by slowness, the queries are:' . PHP_EOL;
 					foreach ( $performed_queries as $i => $query ) {
-						$i++;
+						++$i;
 						$bits                = explode( ', ', $query[2] );
 						$backtrace           = implode( ', ', array_slice( $bits, 13 ) );
 						$seconds             = round( $query[1], 6 );
@@ -463,12 +461,10 @@ EOT;
 			} else {
 				$fields = $assoc_args['fields'];
 			}
-		} else {
-			if ( ! empty( $assoc_args['context'] ) ) {
+		} elseif ( ! empty( $assoc_args['context'] ) ) {
 				$fields = $this->get_context_fields( $assoc_args['context'] );
-			} else {
-				$fields = $this->get_context_fields( 'view' );
-			}
+		} else {
+			$fields = $this->get_context_fields( 'view' );
 		}
 		return new \WP_CLI\Formatter( $assoc_args, $fields );
 	}
@@ -495,7 +491,7 @@ EOT;
 	 * @return string
 	 */
 	private function get_base_route() {
-		return substr( $this->route, 0, strlen( $this->route ) - strlen( $this->resource_identifier ) );
+		return substr( $this->route, 0, strlen( $this->route ) - strlen( (string) $this->resource_identifier ) );
 	}
 
 	/**
@@ -522,7 +518,7 @@ EOT;
 	 */
 	private function recursively_show_difference( $dictated, $current = null ) {
 
-		$this->output_nesting_level++;
+		++$this->output_nesting_level;
 
 		if ( $this->is_assoc_array( $dictated ) ) {
 
@@ -584,8 +580,7 @@ EOT;
 			}
 		}
 
-		$this->output_nesting_level--;
-
+		--$this->output_nesting_level;
 	}
 
 	/**
@@ -666,5 +661,4 @@ EOT;
 		}
 		return $item;
 	}
-
 }

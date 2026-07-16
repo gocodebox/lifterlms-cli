@@ -57,6 +57,13 @@ class Runner {
 				continue;
 			}
 
+			// Skip sub-resource routes (a path segment after the resource ID, e.g. `/content`).
+			// These share their parent's schema title, so auto-discovering them clobbers the parent's
+			// list/get commands. They are registered explicitly instead (see Course\Main).
+			if ( preg_match( '#\)/[^/]+/?$#', $route ) ) {
+				continue;
+			}
+
 			if ( empty( $route_data['schema']['title'] ) ) {
 				\WP_CLI::debug( "No schema title found for {$route}, skipping LifterLMS CLI REST command registration.", 'lifterlms' );
 				continue;
@@ -67,23 +74,13 @@ class Runner {
 			self::register_route_commands( $rest_command, $route, $route_data );
 
 		}
-
 	}
 
-
-	private static function get_command_root_desc( $resource ) {
-		$resource = str_replace( array( '-', 'students', 'api' ), array( ' ', 'student', 'API' ), $resource );
-		if ( 's' !== substr( $resource, -1 ) ) {
-			$resource .= 's';
-		}
-		return sprintf( 'Manage %s.', $resource );
-	}
 
 	private static function get_command_short_desc( $command, $resource ) {
 
 		$before = '';
 		$after  = '';
-
 
 		switch ( $command ) {
 			case 'create':
@@ -95,18 +92,18 @@ class Runner {
 				break;
 
 			case 'diff':
-				$before = 'Compare';
+				$before   = 'Compare';
 				$resource = self::pluralize_resource( $resource );
-				$after = 'between environments';
+				$after    = 'between environments';
 				break;
 
 			case 'edit':
 				$before = 'Launches system editor to edit the';
-				$after = 'content';
+				$after  = 'content';
 				break;
 
 			case 'generate':
-				$before = 'Generates some';
+				$before   = 'Generates some';
 				$resource = self::pluralize_resource( $resource );
 				break;
 
@@ -115,7 +112,7 @@ class Runner {
 				break;
 
 			case 'list':
-				$before = 'Gets a list of ';
+				$before   = 'Gets a list of ';
 				$resource = self::pluralize_resource( $resource );
 				break;
 
@@ -179,7 +176,6 @@ class Runner {
 		}
 
 		return $supported_commands;
-
 	}
 
 	public static function before_invoke_command() {
@@ -200,7 +196,6 @@ class Runner {
 		if ( \WP_CLI::get_config( 'debug' ) && ! defined( 'SAVEQUERIES' ) ) {
 			define( 'SAVEQUERIES', true );
 		}
-
 	}
 
 	/**
@@ -293,15 +288,6 @@ class Runner {
 				'update' => 'update_item',
 			);
 
-			// Add the root command, eg: wp llms course.
-			\WP_CLI::add_command(
-				"{$parent}",
-				$rest_command,
-				array(
-					'shortdesc' => self::get_command_root_desc( $resource ),
-				)
-			);
-
 			// Register main subcommands, eg: wp llms course create, wp llms course delete, etc...
 			\WP_CLI::add_command(
 				"{$parent} {$command}",
@@ -319,7 +305,7 @@ class Runner {
 					"{$parent} diff",
 					array( $rest_command, 'diff_items' ),
 					array(
-						'shortdesc' => self::get_command_short_desc( 'diff', $resource ),
+						'shortdesc'     => self::get_command_short_desc( 'diff', $resource ),
 						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
@@ -331,13 +317,12 @@ class Runner {
 					"{$parent} generate",
 					array( $rest_command, 'generate_items' ),
 					array(
-						'shortdesc' => self::get_command_short_desc( 'generate', $resource ),
-						'synopsis'  => self::get_generate_command_synopsis( $synopsis ),
+						'shortdesc'     => self::get_command_short_desc( 'generate', $resource ),
+						'synopsis'      => self::get_generate_command_synopsis( $synopsis ),
 						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
 			}
-
 
 			// If updating and getting is supported, add the edit command.
 			if ( 'update' === $command && array_key_exists( 'get', $supported_commands ) ) {
@@ -352,8 +337,8 @@ class Runner {
 					"{$parent} edit",
 					array( $rest_command, 'edit_item' ),
 					array(
-						'shortdesc' => self::get_command_short_desc( 'edit', $resource ),
-						'synopsis'  => $synopsis,
+						'shortdesc'     => self::get_command_short_desc( 'edit', $resource ),
+						'synopsis'      => $synopsis,
 						'before_invoke' => array( __CLASS__, 'before_invoke_command' ),
 					)
 				);
@@ -385,7 +370,5 @@ class Runner {
 		);
 
 		return array_merge( $generate_synopsis, $create_synopsis );
-
 	}
-
 }
