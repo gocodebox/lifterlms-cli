@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.6
+ * @version 0.0.6
  */
 
 namespace LifterLMS\CLI\Commands\Course;
@@ -13,7 +13,7 @@ namespace LifterLMS\CLI\Commands\Course;
 /**
  * Course content command trait.
  *
- * @since [version]
+ * @since 0.0.6
  */
 trait Content {
 
@@ -50,7 +50,7 @@ trait Content {
 	 *     # Get course outline as JSON (recommended for AI agents).
 	 *     $ wp llms course content 123 --format=json
 	 *
-	 * @since [version]
+	 * @since 0.0.6
 	 *
 	 * @param array $args       Indexed array of positional arguments.
 	 * @param array $assoc_args Associative array of command options.

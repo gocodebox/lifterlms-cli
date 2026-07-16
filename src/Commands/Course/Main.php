@@ -4,8 +4,8 @@
  *
  * @package LifterLMS/CLI
  *
- * @since [version]
- * @version [version]
+ * @since 0.0.6
+ * @version 0.0.6
  */
 
 namespace LifterLMS\CLI\Commands\Course;
@@ -19,7 +19,7 @@ use LifterLMS\CLI\Commands\AbstractCommand;
  * by adding access to sub-resource REST API routes that the
  * Restful bridge does not discover automatically.
  *
- * @since [version]
+ * @since 0.0.6
  */
 class Main extends AbstractCommand {
 

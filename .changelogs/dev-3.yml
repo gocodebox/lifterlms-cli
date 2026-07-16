@@ -1,4 +1,0 @@
-significance: patch
-type: added
-entry: Added AI agent usage guide (`docs/ai-agents.md`) with patterns for Claude
-  Code, Cursor, Codex, and similar tools.

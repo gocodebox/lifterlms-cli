@@ -47,6 +47,6 @@ Runner::after_wp_load();
  * Adds commands for course sub-resource endpoints (content, enrollments)
  * that are not auto-discovered by the Restful bridge.
  *
- * @since [version]
+ * @since 0.0.6
  */
 WP_CLI::add_command( 'llms course', 'LifterLMS\CLI\Commands\Course\Main' );
